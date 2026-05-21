@@ -1,428 +1,667 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-PT" data-theme="system">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Barros Eletrotécnica — Serviços de eletrotécnica em Portugal. Site brevemente disponível." />
-  <title>Barros Eletrotécnica</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
-
+  <meta name="color-scheme" content="light dark" />
+  <title>Barros Eletrotécnica | Soluções Elétricas e Tecnológicas</title>
+  <meta name="description" content="Instalações elétricas, telecomunicações, domótica, CCTV, mobilidade elétrica, energia solar e manutenção técnica especializada." />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg: #f6f4fb;
+      --surface: rgba(255,255,255,.78);
+      --surface-strong: #ffffff;
+      --text: #1c1c25;
+      --muted: #5d6172;
+      --line: rgba(72, 49, 122, .12);
+      --brand: #5b3cc4;
+      --brand-2: #7a5cff;
+      --brand-soft: rgba(91, 60, 196, .10);
+      --shadow: 0 18px 50px rgba(26, 18, 61, .10);
+      --shadow-2: 0 10px 28px rgba(26, 18, 61, .08);
+      --radius: 24px;
+      --max: 1180px;
     }
 
-    :root {
-      --bg:          oklch(11% 0.015 235);
-      --surface:     oklch(17% 0.018 235);
-      --border:      oklch(23% 0.020 235);
-      --copper:      oklch(68% 0.155 52);
-      --copper-dim:  oklch(42% 0.090 52);
-      --copper-glow: oklch(68% 0.155 52 / 0.15);
-      --text:        oklch(90% 0.008 75);
-      --muted:       oklch(50% 0.012 235);
-      --white:       oklch(97% 0.004 75);
+    html[data-theme="dark"]{
+      --bg: #0c0b12;
+      --surface: rgba(22, 20, 30, .78);
+      --surface-strong: #14111d;
+      --text: #f4f1ff;
+      --muted: #bab6c8;
+      --line: rgba(184, 164, 255, .14);
+      --brand: #a78bfa;
+      --brand-2: #7c5cff;
+      --brand-soft: rgba(167, 139, 250, .12);
+      --shadow: 0 18px 50px rgba(0, 0, 0, .36);
+      --shadow-2: 0 10px 28px rgba(0, 0, 0, .28);
     }
 
-    html, body {
-      height: 100%;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 80% -10%, rgba(122,92,255,.18), transparent 60%),
+        radial-gradient(700px 400px at 10% 10%, rgba(91,60,196,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
     }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Barlow', sans-serif;
-      font-weight: 300;
-      display: flex;
-      flex-direction: column;
-      min-height: 100dvh;
-      overflow-x: hidden;
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    button,input{font:inherit}
+    .skip-link{
+      position:absolute; left:-999px; top:10px;
+      background:var(--surface-strong); color:var(--text);
+      padding:.8rem 1rem; border-radius:999px; box-shadow:var(--shadow);
+      z-index:1000;
+    }
+    .skip-link:focus{left:10px}
+
+    .container{width:min(var(--max), calc(100% - 2rem)); margin:0 auto}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      min-height:76px; gap:1rem;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.9rem; min-width:0;
+    }
+    .brand-mark{
+      width:52px; height:52px; border-radius:16px;
+      background: linear-gradient(145deg, rgba(122,92,255,.16), rgba(91,60,196,.06));
+      border:1px solid var(--line);
+      display:grid; place-items:center;
+      box-shadow:var(--shadow-2);
+      overflow:hidden;
+      flex:none;
+    }
+    .brand-mark img{width:100%; height:100%; object-fit:contain; padding:.35rem}
+    .brand-text{min-width:0}
+    .brand-text strong{display:block; font-size:1rem; letter-spacing:.02em}
+    .brand-text span{display:block; font-size:.84rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+    .desktop-nav{
+      display:none; align-items:center; gap:.35rem;
+      padding:.45rem; border:1px solid var(--line);
+      border-radius:999px; background:var(--surface);
+      box-shadow:var(--shadow-2);
+    }
+    .desktop-nav a{
+      padding:.75rem 1rem; border-radius:999px; color:var(--muted);
+      font-weight:600; font-size:.95rem;
+    }
+    .desktop-nav a:hover,.desktop-nav a:focus-visible{
+      background:var(--brand-soft); color:var(--text); outline:none;
     }
 
-    /* Engineering grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(oklch(100% 0 0 / 0.028) 1px, transparent 1px),
-        linear-gradient(90deg, oklch(100% 0 0 / 0.028) 1px, transparent 1px);
-      background-size: 52px 52px;
-      pointer-events: none;
-      z-index: 0;
+    .nav-actions{display:flex; align-items:center; gap:.55rem}
+    .icon-btn,.menu-btn,.theme-select{
+      border:1px solid var(--line);
+      background:var(--surface);
+      color:var(--text);
+      box-shadow:var(--shadow-2);
+      border-radius:999px;
+      height:46px;
+    }
+    .theme-select{
+      padding:0 .9rem;
+      appearance:none;
+      font-weight:600;
+      max-width:140px;
+    }
+    .icon-btn,.menu-btn{
+      width:46px; display:grid; place-items:center;
+      cursor:pointer;
+    }
+    .menu-btn{display:grid}
+    .icon{
+      width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
     }
 
-    /* Vignette */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, var(--bg) 100%);
-      pointer-events: none;
-      z-index: 0;
+    .hero{padding:2rem 0 1.2rem}
+    .hero-grid{
+      display:grid; gap:1rem;
+      grid-template-columns:1fr;
+      align-items:center;
+    }
+    .hero-copy{
+      padding:1.1rem 0 0;
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.45rem .8rem;
+      border-radius:999px;
+      background:var(--brand-soft);
+      color:var(--brand);
+      border:1px solid color-mix(in srgb, var(--brand) 18%, transparent);
+      font-weight:700;
+      letter-spacing:.02em;
+      font-size:.88rem;
+    }
+    .eyebrow:before{
+      content:"";
+      width:.55rem; height:.55rem; border-radius:99px; background:var(--brand);
+      box-shadow:0 0 0 5px color-mix(in srgb, var(--brand) 20%, transparent);
+    }
+    h1{
+      margin:.95rem 0 .9rem;
+      font-size:clamp(2.2rem, 7vw, 4.9rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      max-width:12ch;
+    }
+    .lead{
+      margin:0 0 1.35rem;
+      max-width:60ch;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+    .cta-row{
+      display:flex; flex-wrap:wrap; gap:.8rem;
+      margin:1rem 0 1.25rem;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+      padding:.95rem 1.1rem;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:700;
+      min-height:48px;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#fff;
+      box-shadow:0 16px 30px color-mix(in srgb, var(--brand) 28%, transparent);
+    }
+    .btn-secondary{
+      background:var(--surface);
+      color:var(--text);
+      border-color:var(--line);
+    }
+    .btn:hover,.btn:focus-visible{transform:translateY(-1px); outline:none}
+
+    .hero-card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 86%, transparent), var(--surface));
+      border-radius:calc(var(--radius) + 6px);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-visual{
+      min-height:340px;
+      display:grid;
+      place-items:center;
+      padding:1rem;
+      position:relative;
+      isolation:isolate;
+    }
+    .hero-visual:before{
+      content:"";
+      position:absolute; inset:1rem;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--brand) 26%, transparent), transparent 34%),
+        radial-gradient(circle at 80% 25%, color-mix(in srgb, var(--brand-2) 18%, transparent), transparent 32%),
+        linear-gradient(135deg, color-mix(in srgb, var(--surface-strong) 92%, transparent), color-mix(in srgb, var(--brand-soft) 20%, transparent));
+      z-index:-1;
+    }
+    .hero-logo{
+      width:min(82%, 540px);
+      filter: drop-shadow(0 16px 30px rgba(0,0,0,.10));
+    }
+    .stats{
+      display:grid;
+      gap:.8rem;
+      grid-template-columns:repeat(2, 1fr);
+      margin-top:1rem;
+    }
+    .stat{
+      padding:1rem;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:var(--surface);
+      box-shadow:var(--shadow-2);
+    }
+    .stat strong{display:block; font-size:1.2rem}
+    .stat span{display:block; color:var(--muted); font-size:.92rem}
+
+    section{padding:1.2rem 0}
+    .section-head{
+      display:flex; align-items:end; justify-content:space-between; gap:1rem;
+      margin-bottom:1rem;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:clamp(1.45rem, 4vw, 2.15rem);
+      letter-spacing:-.03em;
+    }
+    .section-head p{margin:0; color:var(--muted); max-width:58ch}
+    .grid{
+      display:grid; gap:.95rem;
+    }
+    .services{
+      grid-template-columns:repeat(1, 1fr);
+    }
+    .card{
+      border:1px solid var(--line);
+      background:var(--surface);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-2);
+    }
+    .service{
+      padding:1.1rem;
+      display:flex; gap:1rem; align-items:flex-start;
+    }
+    .service .ico{
+      width:46px; height:46px; border-radius:16px;
+      background:var(--brand-soft);
+      color:var(--brand);
+      display:grid; place-items:center; flex:none;
+      border:1px solid color-mix(in srgb, var(--brand) 14%, transparent);
+    }
+    .service h3{margin:0 0 .3rem; font-size:1.02rem}
+    .service p{margin:0; color:var(--muted); font-size:.94rem}
+
+    .two-col{
+      display:grid; gap:.95rem;
+      grid-template-columns:1fr;
+    }
+    .feature-list{padding:1.15rem}
+    .feature-list ul{list-style:none; padding:0; margin:0; display:grid; gap:.85rem}
+    .feature-list li{
+      display:flex; gap:.8rem; align-items:flex-start;
+      color:var(--text);
+    }
+    .check{
+      width:22px; height:22px; border-radius:999px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#fff; display:grid; place-items:center; flex:none; margin-top:.1rem;
+      font-size:.85rem; font-weight:900;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 8vw, 5rem);
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
+    .contact-grid{
+      display:grid; gap:.95rem; grid-template-columns:1fr;
+    }
+    .contact{
+      padding:1.15rem;
+    }
+    .contact h3{margin:.1rem 0 .35rem}
+    .contact p{margin:.1rem 0 .95rem; color:var(--muted)}
+    .contact-actions{display:flex; flex-wrap:wrap; gap:.7rem}
+    .contact-row{
+      display:grid; gap:.8rem; margin-top:1rem;
+    }
+    .info-line{
+      display:flex; justify-content:space-between; gap:1rem;
+      padding:.9rem 0; border-top:1px solid var(--line);
+      color:var(--muted);
+    }
+    .info-line strong{color:var(--text); font-weight:700}
+
+    footer{
+      padding:1.2rem 0 5.5rem;
+      color:var(--muted);
+    }
+    .footer-box{
+      padding:1.15rem;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--surface);
+      box-shadow:var(--shadow-2);
+      display:grid; gap:.7rem;
     }
 
-    /* ── Top label ─────────────────────────────── */
-    .eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(0.62rem, 1.4vw, 0.78rem);
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--copper);
-      margin-bottom: clamp(1.25rem, 3.5vw, 2rem);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+    .mobile-drawer{
+      position:fixed; inset:0;
+      background:rgba(8,8,12,.46);
+      display:none;
+      z-index:80;
     }
-
-    .eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 2rem;
-      height: 1px;
-      background: var(--copper-dim);
-      flex-shrink: 0;
+    .mobile-drawer[aria-hidden="false"]{display:block}
+    .drawer-panel{
+      position:absolute; top:0; right:0; height:100%; width:min(88vw, 360px);
+      background:var(--surface-strong);
+      border-left:1px solid var(--line);
+      box-shadow:var(--shadow);
+      padding:1rem;
+      display:flex; flex-direction:column;
     }
-
-    /* ── Wordmark ──────────────────────────────── */
-    .wordmark {
-      font-family: 'Bebas Neue', sans-serif;
-      line-height: 0.88;
-      letter-spacing: 0.025em;
+    .drawer-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem}
+    .drawer-nav{display:grid; gap:.35rem}
+    .drawer-nav a{
+      padding:1rem; border-radius:16px; border:1px solid var(--line);
+      background:var(--surface);
+      font-weight:700;
     }
+    .drawer-nav a:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
+    .drawer-actions{margin-top:auto; display:grid; gap:.7rem}
 
-    .wordmark-top {
-      display: block;
-      font-size: clamp(4rem, 14vw, 10.5rem);
-      color: var(--white);
+    .fab-bar{
+      position:fixed; left:50%; transform:translateX(-50%);
+      bottom:14px; z-index:60;
+      width:min(100%, 680px);
+      padding:0 .85rem;
     }
-
-    .wordmark-bottom {
-      display: block;
-      font-size: clamp(4rem, 14vw, 10.5rem);
-      color: var(--copper);
+    .fab-inner{
+      display:grid; grid-template-columns:repeat(3, 1fr);
+      gap:.65rem;
+      padding:.7rem;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:color-mix(in srgb, var(--surface-strong) 80%, transparent);
+      backdrop-filter: blur(16px);
+      box-shadow:var(--shadow);
     }
-
-    /* ── Circuit SVG ───────────────────────────── */
-    .circuit-wrap {
-      margin: clamp(2rem, 5vw, 3.25rem) 0;
-      overflow: hidden;
+    .fab{
+      display:flex; align-items:center; justify-content:center; gap:.45rem;
+      padding:.85rem .7rem;
+      border-radius:16px;
+      font-weight:800;
+      min-height:48px;
+      background:var(--surface);
+      border:1px solid var(--line);
+      color:var(--text);
     }
+    .fab.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; border-color:transparent}
 
-    .circuit-svg {
-      width: 100%;
-      height: clamp(28px, 4vw, 44px);
-      display: block;
+    .desktop-only{display:none}
+    .mobile-only{display:flex}
+
+    @media (min-width: 760px){
+      .hero-grid{grid-template-columns:1.05fr .95fr; gap:1.2rem}
+      .services{grid-template-columns:repeat(2, 1fr)}
+      .two-col{grid-template-columns:1fr 1fr}
+      .contact-grid{grid-template-columns:1fr 1fr}
+      .desktop-nav{display:flex}
+      .desktop-only{display:inline-flex}
+      .mobile-only{display:none}
+      .menu-btn{display:none}
+      .stats{grid-template-columns:repeat(4, 1fr)}
     }
-
-    /* ── Status row ────────────────────────────── */
-    .status-row {
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-      flex-wrap: wrap;
-      max-width: 560px;
+    @media (min-width: 1024px){
+      .services{grid-template-columns:repeat(3, 1fr)}
+      .hero{padding:3rem 0 1.5rem}
+      .hero-visual{min-height:460px}
     }
-
-    .status-item {
-      padding: 0 clamp(1.1rem, 2.5vw, 1.75rem);
-      border-left: 1px solid var(--border);
-    }
-
-    .status-item:first-child {
-      padding-left: 0;
-      border-left: none;
-    }
-
-    .status-key {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .status-val {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(0.88rem, 2vw, 1.05rem);
-      font-weight: 400;
-      color: var(--text);
-    }
-
-    /* ── Message ───────────────────────────────── */
-    .message {
-      margin-top: clamp(2.5rem, 6vw, 4.5rem);
-      max-width: 480px;
-      padding-left: clamp(0px, 0vw, 0px);
-    }
-
-    .message-heading {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(1.05rem, 2.6vw, 1.35rem);
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      color: var(--white);
-      margin-bottom: 0.65rem;
-    }
-
-    .message-body {
-      font-size: clamp(0.875rem, 1.8vw, 0.96rem);
-      line-height: 1.75;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    /* ── Contact link ──────────────────────────── */
-    .contact {
-      margin-top: clamp(1.75rem, 4vw, 2.75rem);
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
-      font-weight: 500;
-      letter-spacing: 0.07em;
-      color: var(--copper);
-      text-decoration: none;
-      position: relative;
-      padding-bottom: 2px;
-    }
-
-    .contact-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--copper-dim);
-      transition: background 200ms ease, transform 200ms ease;
-      transform-origin: left;
-    }
-
-    .contact-link:hover {
-      color: var(--white);
-    }
-
-    .contact-link:hover::after {
-      background: var(--white);
-    }
-
-    .contact-link:focus-visible {
-      outline: 2px solid var(--copper);
-      outline-offset: 4px;
-      border-radius: 2px;
-    }
-
-    .contact-icon {
-      width: 1em;
-      height: 1em;
-      flex-shrink: 0;
-    }
-
-    /* ── Footer ────────────────────────────────── */
-    footer {
-      position: relative;
-      z-index: 1;
-      padding: clamp(0.9rem, 2.5vw, 1.25rem) clamp(1.5rem, 8vw, 5rem);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    footer p {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
-
-    /* ── Responsive ────────────────────────────── */
-    @media (max-width: 500px) {
-      .status-row {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .status-item {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid var(--border);
-        padding-top: 1rem;
-      }
-      .status-item:first-child {
-        border-top: none;
-        padding-top: 0;
-      }
-    }
-
-    /* ── Reduced motion ────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      .circuit-charge, .circuit-pulse { animation: none !important; }
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *, *:before, *:after{animation:none !important; transition:none !important}
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
 
-  <main>
-    <p class="eyebrow" aria-label="Serviços de Eletrotécnica — Portugal">
-      Serviços de Eletrotécnica — Portugal
-    </p>
-
-    <h1 class="wordmark">
-      <span class="wordmark-top">Barros</span>
-      <span class="wordmark-bottom">Eletrotécnica</span>
-    </h1>
-
-    <!-- Animated circuit line -->
-    <div class="circuit-wrap" aria-hidden="true">
-      <svg class="circuit-svg" viewBox="0 0 900 44" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Static track -->
-        <path
-          d="M0 22 H90 L112 8 H200 L222 22 H360 L378 8 H430 L448 22 H560 L572 36 L598 8 L620 22 H730 L752 8 H820 L840 22 H900"
-          stroke="oklch(23% 0.020 235)"
-          stroke-width="1.5"
-        />
-        <!-- Animated charge sweep -->
-        <path
-          id="circuit-charge"
-          class="circuit-charge"
-          d="M0 22 H90 L112 8 H200 L222 22 H360 L378 8 H430 L448 22 H560 L572 36 L598 8 L620 22 H730 L752 8 H820 L840 22 H900"
-          stroke="oklch(68% 0.155 52)"
-          stroke-width="2"
-          stroke-linecap="round"
-        />
-        <!-- Junction nodes -->
-        <circle cx="90"  cy="22" r="3.5" fill="var(--bg)" stroke="oklch(42% 0.090 52)" stroke-width="1.5"/>
-        <circle cx="222" cy="22" r="3.5" fill="var(--bg)" stroke="oklch(42% 0.090 52)" stroke-width="1.5"/>
-        <circle cx="448" cy="22" r="3.5" fill="var(--bg)" stroke="oklch(42% 0.090 52)" stroke-width="1.5"/>
-        <circle cx="620" cy="22" r="3.5" fill="var(--bg)" stroke="oklch(42% 0.090 52)" stroke-width="1.5"/>
-        <circle cx="840" cy="22" r="3.5" fill="var(--bg)" stroke="oklch(42% 0.090 52)" stroke-width="1.5"/>
-        <!-- Travelling pulse dot -->
-        <circle id="circuit-pulse" class="circuit-pulse" cx="0" cy="22" r="4.5" fill="oklch(68% 0.155 52)" opacity="0.9"/>
-      </svg>
-    </div>
-
-    <div class="status-row" role="list">
-      <div class="status-item" role="listitem">
-        <p class="status-key">Estado</p>
-        <p class="status-val">Em Construção</p>
-      </div>
-      <div class="status-item" role="listitem">
-        <p class="status-key">Disponível</p>
-        <p class="status-val">Brevemente</p>
-      </div>
-      <div class="status-item" role="listitem">
-        <p class="status-key">Localização</p>
-        <p class="status-val">Portugal</p>
-      </div>
-    </div>
-
-    <div class="message">
-      <h2 class="message-heading">O nosso site está a ser preparado.</h2>
-      <p class="message-body">
-        Estamos a trabalhar para lhe oferecer uma presença digital à altura dos nossos serviços.
-        Em breve teremos tudo pronto. Obrigado pela visita.
-      </p>
-    </div>
-
-    <div class="contact">
-      <a class="contact-link" href="mailto:geral@barroseletrotecnica.pt">
-        <svg class="contact-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path d="M9.2 1.5 3.5 9.5h3.8L5.8 14.5 12.5 6.5H8.7L9.2 1.5z"/>
-        </svg>
-        geral@barroseletrotecnica.pt
+  <header class="topbar">
+    <div class="container nav" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="Barros Eletrotécnica">
+        <div class="brand-mark" aria-hidden="true">
+          <img id="logoMark" data-ai="generate" data-slot="logo-dia-noite" data-prompt="Logo minimalista e técnico para empresa de eletrotecnia, linhas finas, geometria moderna, versão dia/noite em roxo, cinza e branco, fundo transparente, aparência premium e corporativa" data-ar="1:1" src="https://cdn.landing-page.io/ai-landingpage/html-generate/83041e99-907e-4db9-8b79-3268277cb2bf/images/logo-dia-noite-c6ff5fb3347246a2992ff695c5b7399e.png" alt="Logo" />
+        </div>
+        <div class="brand-text">
+          <strong>Barros Eletrotécnica</strong>
+          <span>Soluções elétricas, técnicas e tecnológicas</span>
+        </div>
       </a>
+
+      <nav class="desktop-nav" aria-label="Secções">
+        <a href="#servicos">Serviços</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#contactos">Contactos</a>
+      </nav>
+
+      <div class="nav-actions">
+        <select class="theme-select" id="themeSelect" aria-label="Selecionar tema">
+          <option value="system">Sistema</option>
+          <option value="light">Dia</option>
+          <option value="dark">Noite</option>
+        </select>
+        <button class="menu-btn mobile-only" id="menuBtn" aria-label="Abrir menu" aria-controls="mobileMenu" aria-expanded="false">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
     </div>
+  </header>
+
+  <div class="mobile-drawer" id="mobileMenu" aria-hidden="true">
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu móvel">
+      <div class="drawer-top">
+        <strong>Menu</strong>
+        <button class="icon-btn" id="closeMenuBtn" aria-label="Fechar menu">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <nav class="drawer-nav" aria-label="Navegação móvel">
+        <a href="#servicos">Serviços</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#contactos">Contactos</a>
+      </nav>
+      <div class="drawer-actions">
+        <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-secondary" href="mailto:geral@barroseletrotecnica.pt">Email</a>
+        <a class="btn btn-secondary" href="tel:+351939048904">Ligar</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Engenharia, precisão e resposta rápida</span>
+          <h1>Soluções técnicas para casa, comércio e indústria.</h1>
+          <p class="lead">
+            Serviços de eletrotecnia e sistemas inteligentes com foco em qualidade, segurança e atendimento direto.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5A8.5 8.5 0 1 1 7.2 4.3L4 4l.7 3.1A8.5 8.5 0 0 1 20 11.5Z"/><path d="M9.2 8.8c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .6.4l.9 2c.1.3.1.5-.1.7l-.4.5c-.1.2-.2.4 0 .7.4.7 1.2 1.6 2.1 2.1.3.2.5.1.7 0l.6-.7c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.7-.1.7-.5 1.3-1.1 1.6-.6.4-1.3.5-2 .4-1.2-.1-2.7-.8-4-2-1.4-1.2-2.3-2.7-2.7-4-.2-.8-.1-1.5.1-2.1Z"/></svg>
+              WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="mailto:geral@barroseletrotecnica.pt">Email</a>
+            <a class="btn btn-secondary" href="tel:+351939048904">Telefone</a>
+          </div>
+
+          <div class="stats" aria-label="Indicadores rápidos">
+            <div class="stat"><strong>24/7</strong><span>Contacto rápido</span></div>
+            <div class="stat"><strong>Residencial</strong><span>Comercial e industrial</span></div>
+            <div class="stat"><strong>Rápido</strong><span>Resposta e orçamento</span></div>
+            <div class="stat"><strong>Moderno</strong><span>Light e dark mode</span></div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-visual">
+            <img class="hero-logo" id="heroLogo" data-ai="generate" data-slot="hero-logo-dia-noite" data-prompt="Marca visual premium e minimalista para uma empresa portuguesa de eletrotecnia, estilo técnico, linhas geométricas finas, composição elegante com roxo escuro, cinza grafite e branco, versão dia/noite, fundo transparente" data-ar="16:9" src="https://cdn.landing-page.io/ai-landingpage/html-generate/83041e99-907e-4db9-8b79-3268277cb2bf/images/hero-logo-dia-noite-5d0f255f2f1e4cb5812c194cb8e586e8.png" alt="Identidade visual da empresa" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Serviços</h2>
+            <p>Uma oferta completa para instalações, segurança, automação e eficiência energética.</p>
+          </div>
+        </div>
+
+        <div class="grid services">
+          <article class="card service"><div class="ico">⚡</div><div><h3>Instalações Elétricas</h3><p>Projetos, montagem e execução com foco em segurança e durabilidade.</p></div></article>
+          <article class="card service"><div class="ico">📡</div><div><h3>Telecomunicações e ITED</h3><p>Infraestruturas preparadas para conectividade estável e organizada.</p></div></article>
+          <article class="card service"><div class="ico">⌂</div><div><h3>Domótica e Automação</h3><p>Controlo inteligente de iluminação, estores, climatização e cenários.</p></div></article>
+          <article class="card service"><div class="ico">◉</div><div><h3>CCTV, Intrusão e Incêndio</h3><p>Soluções de vigilância e proteção para pessoas e património.</p></div></article>
+          <article class="card service"><div class="ico">▣</div><div><h3>Vídeo Porteiro e Acessos</h3><p>Gestão de entradas com conveniência, controlo e segurança.</p></div></article>
+          <article class="card service"><div class="ico">⟐</div><div><h3>Mobilidade Elétrica</h3><p>Pontos de carregamento para uma transição energética eficiente.</p></div></article>
+          <article class="card service"><div class="ico">☀</div><div><h3>Energia Solar</h3><p>Autoconsumo e soluções renováveis para reduzir custos energéticos.</p></div></article>
+          <article class="card service"><div class="ico">🏭</div><div><h3>Instalações Técnicas Industriais</h3><p>Execução técnica robusta para ambientes exigentes e produtivos.</p></div></article>
+          <article class="card service"><div class="ico">🛠</div><div><h3>Manutenção Técnica Especializada</h3><p>Assistência preventiva e corretiva para continuidade operacional.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="diferenciais">
+      <div class="container two-col">
+        <article class="card feature-list">
+          <div class="section-head" style="margin-bottom:.8rem">
+            <div>
+              <h2>Porque escolher a Barros Eletrotécnica</h2>
+              <p>Uma presença técnica, limpa e confiável, com foco em solução rápida.</p>
+            </div>
+          </div>
+          <ul>
+            <li><span class="check">✓</span><span>Atendimento direto por WhatsApp, email e telefone.</span></li>
+            <li><span class="check">✓</span><span>Interface mobile-first com menu acessível e discreto.</span></li>
+            <li><span class="check">✓</span><span>Modo dia/noite automático ou escolhido pelo utilizador.</span></li>
+            <li><span class="check">✓</span><span>Posicionamento técnico e premium, sem excesso visual.</span></li>
+          </ul>
+        </article>
+
+        <article class="card contact" id="contactos">
+          <div class="section-head" style="margin-bottom:.8rem">
+            <div>
+              <h2>Contactos rápidos</h2>
+              <p>Peça orçamento ou tire dúvidas com um clique.</p>
+            </div>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-secondary" href="mailto:geral@barroseletrotecnica.pt">Email</a>
+            <a class="btn btn-secondary" href="tel:+351939048904">Ligar</a>
+          </div>
+
+          <div class="contact-row" aria-label="Informação institucional">
+            <div class="info-line"><span>Rafael Barros</span><strong>Sócio Gerente</strong></div>
+            <div class="info-line"><span>Téc. Responsável DGEG</span><strong>Nº 85335</strong></div>
+            <div class="info-line"><span>IMPIC</span><strong>Nº 153625 - PUB</strong></div>
+            <div class="info-line"><span>Entidade Instaladora</span><strong>Nº 3319</strong></div>
+            <div class="info-line"><span>NIF</span><strong>515.914.509</strong></div>
+            <div class="info-line"><span>Empresa</span><strong>Brisa Oblíqua</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 Barros Eletrotécnica — Todos os direitos reservados</p>
-    <p>barroseletrotecnica.pt</p>
+    <div class="container">
+      <div class="footer-box">
+        <strong>Barros Eletrotécnica</strong>
+        <span>Instalações elétricas e soluções tecnológicas para um presente mais seguro, eficiente e conectado.</span>
+      </div>
+    </div>
   </footer>
+
+  <div class="fab-bar" aria-label="Ações rápidas">
+    <div class="fab-inner">
+      <a class="fab primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="fab" href="mailto:geral@barroseletrotecnica.pt">Email</a>
+      <a class="fab" href="tel:+351939048904">Telefone</a>
+    </div>
+  </div>
 
   <script>
     (function () {
-      const path  = document.getElementById('circuit-charge');
-      const pulse = document.getElementById('circuit-pulse');
-      if (!path || !pulse) return;
+      const root = document.documentElement;
+      const themeSelect = document.getElementById('themeSelect');
+      const logoMark = document.getElementById('logoMark');
+      const heroLogo = document.getElementById('heroLogo');
+      const menuBtn = document.getElementById('menuBtn');
+      const closeMenuBtn = document.getElementById('closeMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
 
-      const len = path.getTotalLength();
-      const DURATION = 2600; // ms
+      const logoLight = `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0%" stop-color="#5b3cc4"/>
+              <stop offset="100%" stop-color="#7a5cff"/>
+            </linearGradient>
+          </defs>
+          <rect width="700" height="260" fill="none"/>
+          <g fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M102 168V92l58-34 58 34v76l-58 34z"/>
+            <path d="M116 111h88"/>
+            <path d="M145 127h30l-15 28h25"/>
+          </g>
+          <text x="230" y="127" font-size="52" font-family="Arial, Helvetica, sans-serif" fill="#1c1c25" font-weight="700">Barros</text>
+          <text x="230" y="178" font-size="34" font-family="Arial, Helvetica, sans-serif" fill="#5b3cc4" letter-spacing="2">ELETROTÉCNICA</text>
+        </svg>
+      `)}`;
 
-      // Ease-out quart
-      function easeOutQuart(t) {
-        return 1 - Math.pow(1 - t, 4);
+      const logoDark = `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0%" stop-color="#a78bfa"/>
+              <stop offset="100%" stop-color="#7c5cff"/>
+            </linearGradient>
+          </defs>
+          <rect width="700" height="260" fill="none"/>
+          <g fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M102 168V92l58-34 58 34v76l-58 34z"/>
+            <path d="M116 111h88"/>
+            <path d="M145 127h30l-15 28h25"/>
+          </g>
+          <text x="230" y="127" font-size="52" font-family="Arial, Helvetica, sans-serif" fill="#f4f1ff" font-weight="700">Barros</text>
+          <text x="230" y="178" font-size="34" font-family="Arial, Helvetica, sans-serif" fill="#a78bfa" letter-spacing="2">ELETROTÉCNICA</text>
+        </svg>
+      `)}`;
+
+      function systemTheme() {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
 
-      // Build and inject CSS keyframes
-      const css = document.createElement('style');
-      css.textContent = `
-        .circuit-charge {
-          stroke-dasharray: ${len};
-          stroke-dashoffset: ${len};
-          animation: chargeIn ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                     chargePulse 2.8s ease-in-out ${DURATION}ms infinite;
-        }
-        @keyframes chargeIn {
-          to { stroke-dashoffset: 0; }
-        }
-        @keyframes chargePulse {
-          0%, 100% { opacity: 0.65; }
-          50%       { opacity: 1; }
-        }
-        .circuit-pulse {
-          animation: pulseFade ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes pulseFade {
-          0%   { opacity: 0.9; }
-          85%  { opacity: 0.7; }
-          100% { opacity: 0; }
-        }
-      `;
-      document.head.appendChild(css);
-
-      // Animate dot along path
-      let start = null;
-      function tick(ts) {
-        if (!start) start = ts;
-        const raw      = Math.min((ts - start) / DURATION, 1);
-        const progress = easeOutQuart(raw);
-        const pt       = path.getPointAtLength(progress * len);
-        pulse.setAttribute('cx', pt.x);
-        pulse.setAttribute('cy', pt.y);
-        if (raw < 1) requestAnimationFrame(tick);
+      function applyTheme(theme) {
+        const resolved = theme === 'system' ? systemTheme() : theme;
+        root.setAttribute('data-theme', resolved);
+        themeSelect.value = theme;
+        const logo = resolved === 'dark' ? logoDark : logoLight;
+        logoMark.src = logo;
+        heroLogo.src = logo;
+        localStorage.setItem('site-theme', theme);
       }
-      requestAnimationFrame(tick);
+
+      const savedTheme = localStorage.getItem('site-theme') || 'system';
+      applyTheme(savedTheme);
+
+      themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => {
+        if ((localStorage.getItem('site-theme') || 'system') === 'system') applyTheme('system');
+      });
+
+      function openMenu() {
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        closeMenuBtn.focus();
+      }
+      function closeMenu() {
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.focus();
+      }
+
+      menuBtn?.addEventListener('click', openMenu);
+      closeMenuBtn?.addEventListener('click', closeMenu);
+      mobileMenu?.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') closeMenu(); });
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     })();
   </script>
-
 </body>
 </html>
