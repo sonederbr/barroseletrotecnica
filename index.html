@@ -1,557 +1,697 @@
 <!DOCTYPE html>
-<html lang="pt-PT" data-theme="system">
+<html lang="pt-PT" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light dark" />
-  <title>Barros Eletrotécnica | Soluções Elétricas e Tecnológicas</title>
-  <meta name="description" content="Instalações elétricas, telecomunicações, domótica, CCTV, mobilidade elétrica, energia solar e manutenção técnica especializada." />
+  <title>Barros Eletrotecnica | Instalacoes Eletricas e Solucoes Tecnologicas</title>
+  <meta name="description" content="Instalacoes eletricas, telecomunicacoes, domotica, CCTV, mobilidade eletrica, energia solar e manutencao especializada. DGEG n 85335. Portugal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --bg: #f6f4fb;
-      --surface: rgba(255,255,255,.78);
-      --surface-strong: #ffffff;
-      --text: #1c1c25;
-      --muted: #5d6172;
-      --line: rgba(72, 49, 122, .12);
-      --brand: #5b3cc4;
-      --brand-2: #7a5cff;
-      --brand-soft: rgba(91, 60, 196, .10);
-      --shadow: 0 18px 50px rgba(26, 18, 61, .10);
-      --shadow-2: 0 10px 28px rgba(26, 18, 61, .08);
-      --radius: 24px;
-      --max: 1180px;
+    :root {
+      --accent:       oklch(67% 0.148 53);
+      --accent-dim:   oklch(80% 0.10  53);
+      --accent-soft:  oklch(94.5% 0.032 58);
+      --accent-fg:    oklch(100% 0 0);
+      --bg:           oklch(97% 0.012 72);
+      --surface:      oklch(100% 0.004 72);
+      --surface-2:    oklch(94% 0.018 70);
+      --surface-3:    oklch(89% 0.022 70);
+      --ink:          oklch(17% 0.022 62);
+      --ink-2:        oklch(40% 0.025 62);
+      --ink-3:        oklch(62% 0.018 62);
+      --rule:         oklch(88% 0.02 72);
+      --rule-strong:  oklch(78% 0.025 72);
+      --shadow-sm:    0 1px 3px oklch(20% 0.01 65 / 0.08);
+      --shadow-md:    0 4px 16px oklch(20% 0.01 65 / 0.10);
+      --shadow-lg:    0 14px 48px oklch(20% 0.01 65 / 0.13);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+      --max: 1200px;
+      --g: clamp(1rem, 4vw, 2rem);
+    }
+    [data-theme="dark"] {
+      --accent:       oklch(74% 0.135 53);
+      --accent-dim:   oklch(60% 0.14  53);
+      --accent-soft:  oklch(22% 0.045 55);
+      --accent-fg:    oklch(10% 0.02  60);
+      --bg:           oklch(13% 0.018 57);
+      --surface:      oklch(18% 0.016 57);
+      --surface-2:    oklch(23% 0.016 57);
+      --surface-3:    oklch(28% 0.016 57);
+      --ink:          oklch(94% 0.012 72);
+      --ink-2:        oklch(72% 0.016 72);
+      --ink-3:        oklch(52% 0.016 72);
+      --rule:         oklch(27% 0.018 57);
+      --rule-strong:  oklch(37% 0.022 57);
+      --shadow-sm:    0 1px 4px oklch(0% 0 0 / 0.4);
+      --shadow-md:    0 4px 16px oklch(0% 0 0 / 0.5);
+      --shadow-lg:    0 14px 48px oklch(0% 0 0 / 0.6);
     }
 
-    html[data-theme="dark"]{
-      --bg: #0c0b12;
-      --surface: rgba(22, 20, 30, .78);
-      --surface-strong: #14111d;
-      --text: #f4f1ff;
-      --muted: #bab6c8;
-      --line: rgba(184, 164, 255, .14);
-      --brand: #a78bfa;
-      --brand-2: #7c5cff;
-      --brand-soft: rgba(167, 139, 250, .12);
-      --shadow: 0 18px 50px rgba(0, 0, 0, .36);
-      --shadow-2: 0 10px 28px rgba(0, 0, 0, .28);
+    *, *::before, *::after { box-sizing: border-box }
+    html { scroll-behavior: smooth }
+    body {
+      margin: 0;
+      font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+      font-size: 1rem; line-height: 1.6;
+      background: var(--bg); color: var(--ink);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 300ms var(--ease-out-quart), color 300ms var(--ease-out-quart);
+    }
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100%; display: block }
+    button { font: inherit; cursor: pointer }
+    p { margin: 0 }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 10px;
+      background: var(--surface); color: var(--ink);
+      padding: .75rem 1.25rem; border-radius: 999px;
+      box-shadow: var(--shadow-md); z-index: 1000; font-weight: 600;
+    }
+    .skip-link:focus { left: 10px }
+    .container { width: min(var(--max), calc(100% - var(--g) * 2)); margin: 0 auto }
+
+    /* ====== NAV ====== */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in oklch, var(--bg) 86%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--rule);
+      transition: background-color 300ms var(--ease-out-quart), border-color 300ms var(--ease-out-quart);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 68px; gap: 1rem;
+    }
+    .brand { display: flex; align-items: center; gap: .8rem; min-width: 0 }
+    .brand-mark {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--accent);
+      display: grid; place-items: center; flex: none;
+      transition: transform 200ms var(--ease-out-quart);
+    }
+    .brand-mark:hover { transform: rotate(-8deg) scale(1.06) }
+    .brand-mark svg { width: 20px; height: 20px }
+    .brand-text strong { display: block; font-size: .9375rem; font-weight: 700; letter-spacing: -.01em }
+    .brand-text span { display: block; font-size: .75rem; color: var(--ink-3); letter-spacing: .01em }
+
+    .desktop-nav { display: none; align-items: center; gap: .15rem }
+    .desktop-nav a {
+      padding: .5rem .875rem; border-radius: 8px;
+      color: var(--ink-2); font-weight: 500; font-size: .9375rem;
+      transition: color 150ms, background-color 150ms;
+    }
+    .desktop-nav a:hover, .desktop-nav a:focus-visible {
+      color: var(--ink); background: var(--surface-2); outline: none;
+    }
+    .nav-actions { display: flex; align-items: center; gap: .45rem }
+
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 10px;
+      border: 1px solid var(--rule);
+      background: var(--surface); color: var(--ink);
+      display: grid; place-items: center;
+      position: relative; overflow: hidden;
+      transition: background-color 150ms, transform 150ms var(--ease-out-quart);
+    }
+    .icon-btn:hover { background: var(--surface-2); transform: scale(1.05) }
+    .icon-btn:active { transform: scale(.97) }
+    .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+    .t-sun, .t-moon {
+      position: absolute; width: 17px; height: 17px;
+      stroke: currentColor; fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+      transition: opacity 250ms var(--ease-out-quart), transform 300ms var(--ease-out-expo);
+    }
+    .t-sun  { opacity: 1;  transform: translateY(0) rotate(0deg) }
+    .t-moon { opacity: 0;  transform: translateY(8px) rotate(-30deg) }
+    [data-theme="dark"] .t-sun  { opacity: 0;  transform: translateY(-8px) rotate(30deg) }
+    [data-theme="dark"] .t-moon { opacity: 1;  transform: translateY(0) rotate(0deg) }
+    .menu-btn { display: grid }
+
+    @media (min-width: 780px) {
+      .desktop-nav { display: flex }
+      .menu-btn { display: none !important }
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(900px 500px at 80% -10%, rgba(122,92,255,.18), transparent 60%),
-        radial-gradient(700px 400px at 10% 10%, rgba(91,60,196,.12), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.5;
-      text-rendering:optimizeLegibility;
-      -webkit-font-smoothing:antialiased;
+    /* ====== MOBILE DRAWER ====== */
+    .overlay {
+      position: fixed; inset: 0;
+      background: oklch(0% 0 0 / 0.52);
+      z-index: 80; display: none;
+    }
+    .overlay[aria-hidden="false"] { display: block }
+    .drawer {
+      position: absolute; top: 0; right: 0; height: 100%; width: min(84vw, 320px);
+      background: var(--surface); border-left: 1px solid var(--rule);
+      box-shadow: var(--shadow-lg); padding: 1.25rem 1rem;
+      display: flex; flex-direction: column; gap: .875rem;
+      transform: translateX(100%);
+      transition: transform 360ms var(--ease-out-expo);
+    }
+    .overlay[aria-hidden="false"] .drawer { transform: translateX(0) }
+    .drawer-head { display: flex; justify-content: space-between; align-items: center }
+    .drawer-head strong { font-size: .9375rem; font-weight: 700 }
+    .drawer-links { display: grid; gap: .3rem }
+    .drawer-links a {
+      padding: .875rem 1rem; border-radius: 10px;
+      border: 1px solid var(--rule); background: var(--surface-2);
+      font-weight: 600; font-size: .9375rem;
+      transition: background-color 150ms;
+    }
+    .drawer-links a:hover { background: var(--surface-3) }
+    .drawer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+    .drawer-cta { margin-top: auto; display: grid; gap: .55rem }
+
+    /* ====== HERO ====== */
+    .hero {
+      padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 5vw, 4rem);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(circle, oklch(67% 0.148 53 / 0.055) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 100%);
+    }
+    .hero .container { position: relative; z-index: 1 }
+    .hero-grid { display: grid; gap: clamp(2rem, 5vw, 3.5rem); align-items: center }
+    @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.15fr .85fr } }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .35rem .85rem; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
+      border: 1px solid color-mix(in oklch, var(--accent) 22%, transparent);
+      font-weight: 600; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: ''; width: .42rem; height: .42rem; border-radius: 99px;
+      background: var(--accent); flex: none;
+      animation: dot-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; transform: scale(1) }
+      50%       { opacity: .4; transform: scale(.65) }
     }
 
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-    button,input{font:inherit}
-    .skip-link{
-      position:absolute; left:-999px; top:10px;
-      background:var(--surface-strong); color:var(--text);
-      padding:.8rem 1rem; border-radius:999px; box-shadow:var(--shadow);
-      z-index:1000;
+    h1 {
+      font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.4rem, 6.5vw, 4.8rem);
+      font-weight: 700; line-height: 1.06; letter-spacing: -.03em;
+      color: var(--ink); margin: .9rem 0 1.1rem; max-width: 14ch;
     }
-    .skip-link:focus{left:10px}
+    h1 em { font-style: italic; color: var(--accent) }
 
-    .container{width:min(var(--max), calc(100% - 2rem)); margin:0 auto}
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(18px);
-      background: color-mix(in srgb, var(--bg) 72%, transparent);
-      border-bottom:1px solid var(--line);
+    .lead {
+      font-size: clamp(.9375rem, 1.8vw, 1.0625rem);
+      color: var(--ink-2); max-width: 52ch; line-height: 1.7;
     }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      min-height:76px; gap:1rem;
-    }
-    .brand{
-      display:flex; align-items:center; gap:.9rem; min-width:0;
-    }
-    .brand-mark{
-      width:52px; height:52px; border-radius:16px;
-      background: linear-gradient(145deg, rgba(122,92,255,.16), rgba(91,60,196,.06));
-      border:1px solid var(--line);
-      display:grid; place-items:center;
-      box-shadow:var(--shadow-2);
-      overflow:hidden;
-      flex:none;
-    }
-    .brand-mark img{width:100%; height:100%; object-fit:contain; padding:.35rem}
-    .brand-text{min-width:0}
-    .brand-text strong{display:block; font-size:1rem; letter-spacing:.02em}
-    .brand-text span{display:block; font-size:.84rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+    .cta-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem }
 
-    .desktop-nav{
-      display:none; align-items:center; gap:.35rem;
-      padding:.45rem; border:1px solid var(--line);
-      border-radius:999px; background:var(--surface);
-      box-shadow:var(--shadow-2);
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .75rem 1.25rem; border-radius: 10px;
+      font-weight: 600; font-size: .9375rem; min-height: 48px;
+      border: 1.5px solid transparent; white-space: nowrap;
+      transition: transform 150ms var(--ease-out-quart), box-shadow 200ms, background-color 150ms;
     }
-    .desktop-nav a{
-      padding:.75rem 1rem; border-radius:999px; color:var(--muted);
-      font-weight:600; font-size:.95rem;
-    }
-    .desktop-nav a:hover,.desktop-nav a:focus-visible{
-      background:var(--brand-soft); color:var(--text); outline:none;
-    }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px }
+    .btn:hover { transform: translateY(-1px) }
+    .btn:active { transform: translateY(0) }
+    .btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none }
 
-    .nav-actions{display:flex; align-items:center; gap:.55rem}
-    .icon-btn,.menu-btn,.theme-select{
-      border:1px solid var(--line);
-      background:var(--surface);
-      color:var(--text);
-      box-shadow:var(--shadow-2);
-      border-radius:999px;
-      height:46px;
-    }
-    .theme-select{
-      padding:0 .9rem;
-      appearance:none;
-      font-weight:600;
-      max-width:140px;
-    }
-    .icon-btn,.menu-btn{
-      width:46px; display:grid; place-items:center;
-      cursor:pointer;
-    }
-    .menu-btn{display:grid}
-    .icon{
-      width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
-    }
+    .btn-primary { background: var(--accent); color: var(--accent-fg); box-shadow: 0 4px 14px oklch(67% 0.148 53 / 0.30) }
+    .btn-primary:hover { box-shadow: 0 6px 22px oklch(67% 0.148 53 / 0.42) }
+    .btn-outline { background: transparent; color: var(--ink); border-color: var(--rule-strong) }
+    .btn-outline:hover { background: var(--surface-2) }
 
-    .hero{padding:2rem 0 1.2rem}
-    .hero-grid{
-      display:grid; gap:1rem;
-      grid-template-columns:1fr;
-      align-items:center;
+    .stats-strip {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; margin-top: clamp(2rem, 4vw, 3rem);
+      border: 1px solid var(--rule); border-radius: 14px; overflow: hidden;
+      background: var(--rule);
     }
-    .hero-copy{
-      padding:1.1rem 0 0;
-    }
-    .eyebrow{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.45rem .8rem;
-      border-radius:999px;
-      background:var(--brand-soft);
-      color:var(--brand);
-      border:1px solid color-mix(in srgb, var(--brand) 18%, transparent);
-      font-weight:700;
-      letter-spacing:.02em;
-      font-size:.88rem;
-    }
-    .eyebrow:before{
-      content:"";
-      width:.55rem; height:.55rem; border-radius:99px; background:var(--brand);
-      box-shadow:0 0 0 5px color-mix(in srgb, var(--brand) 20%, transparent);
-    }
-    h1{
-      margin:.95rem 0 .9rem;
-      font-size:clamp(2.2rem, 7vw, 4.9rem);
-      line-height:1.02;
-      letter-spacing:-.04em;
-      max-width:12ch;
-    }
-    .lead{
-      margin:0 0 1.35rem;
-      max-width:60ch;
-      color:var(--muted);
-      font-size:1.03rem;
-    }
-    .cta-row{
-      display:flex; flex-wrap:wrap; gap:.8rem;
-      margin:1rem 0 1.25rem;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
-      padding:.95rem 1.1rem;
-      border-radius:999px;
-      border:1px solid transparent;
-      font-weight:700;
-      min-height:48px;
-      transition:.2s ease;
-      cursor:pointer;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg, var(--brand), var(--brand-2));
-      color:#fff;
-      box-shadow:0 16px 30px color-mix(in srgb, var(--brand) 28%, transparent);
-    }
-    .btn-secondary{
-      background:var(--surface);
-      color:var(--text);
-      border-color:var(--line);
-    }
-    .btn:hover,.btn:focus-visible{transform:translateY(-1px); outline:none}
+    @media (min-width: 480px) { .stats-strip { grid-template-columns: repeat(4, 1fr) } }
+    .stat-cell { background: var(--surface); padding: .9rem 1rem; transition: background-color 300ms }
+    .stat-cell strong { display: block; font-size: clamp(.875rem, 1.8vw, 1.0625rem); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums }
+    .stat-cell span { display: block; font-size: .76rem; color: var(--ink-3); margin-top: .18rem; line-height: 1.4 }
 
-    .hero-card{
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 86%, transparent), var(--surface));
-      border-radius:calc(var(--radius) + 6px);
-      box-shadow:var(--shadow);
-      overflow:hidden;
+    .cred-panel {
+      border: 1px solid var(--rule); border-radius: 18px;
+      background: var(--surface); overflow: hidden; box-shadow: var(--shadow-lg);
     }
-    .hero-visual{
-      min-height:340px;
-      display:grid;
-      place-items:center;
-      padding:1rem;
-      position:relative;
-      isolation:isolate;
+    .cred-head {
+      background: var(--accent); padding: 1.1rem 1.4rem;
+      display: flex; align-items: center; gap: .75rem;
     }
-    .hero-visual:before{
-      content:"";
-      position:absolute; inset:1rem;
-      border-radius:24px;
-      background:
-        radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--brand) 26%, transparent), transparent 34%),
-        radial-gradient(circle at 80% 25%, color-mix(in srgb, var(--brand-2) 18%, transparent), transparent 32%),
-        linear-gradient(135deg, color-mix(in srgb, var(--surface-strong) 92%, transparent), color-mix(in srgb, var(--brand-soft) 20%, transparent));
-      z-index:-1;
+    .cred-head-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: oklch(100% 0 0 / 0.18); display: grid; place-items: center; flex: none;
     }
-    .hero-logo{
-      width:min(82%, 540px);
-      filter: drop-shadow(0 16px 30px rgba(0,0,0,.10));
+    .cred-head-icon svg { width: 16px; height: 16px; stroke: oklch(100% 0 0); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
+    .cred-head-text strong { display: block; color: oklch(100% 0 0); font-size: .9375rem; font-weight: 700 }
+    .cred-head-text span { display: block; color: oklch(100% 0 0 / 0.72); font-size: .78rem }
+    .cred-row {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      padding: .82rem 1.4rem; border-bottom: 1px solid var(--rule); font-size: .875rem;
     }
-    .stats{
-      display:grid;
-      gap:.8rem;
-      grid-template-columns:repeat(2, 1fr);
-      margin-top:1rem;
-    }
-    .stat{
-      padding:1rem;
-      border-radius:20px;
-      border:1px solid var(--line);
-      background:var(--surface);
-      box-shadow:var(--shadow-2);
-    }
-    .stat strong{display:block; font-size:1.2rem}
-    .stat span{display:block; color:var(--muted); font-size:.92rem}
+    .cred-row:last-child { border-bottom: none }
+    .cred-row span { color: var(--ink-3) }
+    .cred-row strong { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ink) }
 
-    section{padding:1.2rem 0}
-    .section-head{
-      display:flex; align-items:end; justify-content:space-between; gap:1rem;
-      margin-bottom:1rem;
+    /* ====== SERVICES ====== */
+    .services-section { padding: clamp(3rem, 6vw, 5rem) 0 }
+    .section-label {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .875rem;
     }
-    .section-head h2{
-      margin:0;
-      font-size:clamp(1.45rem, 4vw, 2.15rem);
-      letter-spacing:-.03em;
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule) }
+    .section-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-weight: 700; letter-spacing: -.025em; line-height: 1.15;
+      color: var(--ink); margin: 0 0 .45rem;
     }
-    .section-head p{margin:0; color:var(--muted); max-width:58ch}
-    .grid{
-      display:grid; gap:.95rem;
-    }
-    .services{
-      grid-template-columns:repeat(1, 1fr);
-    }
-    .card{
-      border:1px solid var(--line);
-      background:var(--surface);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow-2);
-    }
-    .service{
-      padding:1.1rem;
-      display:flex; gap:1rem; align-items:flex-start;
-    }
-    .service .ico{
-      width:46px; height:46px; border-radius:16px;
-      background:var(--brand-soft);
-      color:var(--brand);
-      display:grid; place-items:center; flex:none;
-      border:1px solid color-mix(in srgb, var(--brand) 14%, transparent);
-    }
-    .service h3{margin:0 0 .3rem; font-size:1.02rem}
-    .service p{margin:0; color:var(--muted); font-size:.94rem}
-
-    .two-col{
-      display:grid; gap:.95rem;
-      grid-template-columns:1fr;
-    }
-    .feature-list{padding:1.15rem}
-    .feature-list ul{list-style:none; padding:0; margin:0; display:grid; gap:.85rem}
-    .feature-list li{
-      display:flex; gap:.8rem; align-items:flex-start;
-      color:var(--text);
-    }
-    .check{
-      width:22px; height:22px; border-radius:999px;
-      background:linear-gradient(135deg, var(--brand), var(--brand-2));
-      color:#fff; display:grid; place-items:center; flex:none; margin-top:.1rem;
-      font-size:.85rem; font-weight:900;
+    .section-lead {
+      font-size: .9375rem; color: var(--ink-2); max-width: 58ch;
+      margin-bottom: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.65;
     }
 
-    .contact-grid{
-      display:grid; gap:.95rem; grid-template-columns:1fr;
+    .svc-grid {
+      display: grid; gap: 1px; background: var(--rule);
+      border: 1px solid var(--rule); border-radius: 16px; overflow: hidden;
     }
-    .contact{
-      padding:1.15rem;
-    }
-    .contact h3{margin:.1rem 0 .35rem}
-    .contact p{margin:.1rem 0 .95rem; color:var(--muted)}
-    .contact-actions{display:flex; flex-wrap:wrap; gap:.7rem}
-    .contact-row{
-      display:grid; gap:.8rem; margin-top:1rem;
-    }
-    .info-line{
-      display:flex; justify-content:space-between; gap:1rem;
-      padding:.9rem 0; border-top:1px solid var(--line);
-      color:var(--muted);
-    }
-    .info-line strong{color:var(--text); font-weight:700}
+    @media (min-width: 600px) { .svc-grid { grid-template-columns: repeat(2, 1fr) } }
+    @media (min-width: 900px) { .svc-grid { grid-template-columns: repeat(3, 1fr) } }
 
-    footer{
-      padding:1.2rem 0 5.5rem;
-      color:var(--muted);
+    .svc-item {
+      background: var(--surface); padding: 1.35rem 1.2rem;
+      display: flex; gap: .9rem; align-items: flex-start;
+      transition: background-color 200ms var(--ease-out-quart);
     }
-    .footer-box{
-      padding:1.15rem;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:var(--surface);
-      box-shadow:var(--shadow-2);
-      display:grid; gap:.7rem;
+    .svc-item:hover { background: var(--surface-2) }
+    .svc-ico {
+      width: 40px; height: 40px; border-radius: 10px; flex: none;
+      background: var(--accent-soft); color: var(--accent);
+      display: grid; place-items: center;
+      border: 1px solid color-mix(in oklch, var(--accent) 14%, transparent);
+      transition: background-color 200ms var(--ease-out-quart), color 200ms, transform 200ms var(--ease-out-quart);
     }
+    .svc-item:hover .svc-ico { background: var(--accent); color: var(--accent-fg); transform: scale(1.08) }
+    .svc-ico svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round }
+    .svc-body { min-width: 0 }
+    .svc-item h3 { margin: 0 0 .28rem; font-size: .9375rem; font-weight: 700; color: var(--ink); line-height: 1.3 }
+    .svc-item p { margin: 0; font-size: .8125rem; color: var(--ink-3); line-height: 1.55 }
 
-    .mobile-drawer{
-      position:fixed; inset:0;
-      background:rgba(8,8,12,.46);
-      display:none;
-      z-index:80;
-    }
-    .mobile-drawer[aria-hidden="false"]{display:block}
-    .drawer-panel{
-      position:absolute; top:0; right:0; height:100%; width:min(88vw, 360px);
-      background:var(--surface-strong);
-      border-left:1px solid var(--line);
-      box-shadow:var(--shadow);
-      padding:1rem;
-      display:flex; flex-direction:column;
-    }
-    .drawer-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem}
-    .drawer-nav{display:grid; gap:.35rem}
-    .drawer-nav a{
-      padding:1rem; border-radius:16px; border:1px solid var(--line);
-      background:var(--surface);
-      font-weight:700;
-    }
-    .drawer-nav a:focus-visible{outline:2px solid var(--brand); outline-offset:2px}
-    .drawer-actions{margin-top:auto; display:grid; gap:.7rem}
+    /* ====== WHY + CONTACT ====== */
+    .two-section { padding: clamp(2rem, 5vw, 4rem) 0 }
+    .two-grid { display: grid; gap: clamp(1rem, 2.5vw, 1.5rem) }
+    @media (min-width: 780px) { .two-grid { grid-template-columns: 1fr 1fr } }
 
-    .fab-bar{
-      position:fixed; left:50%; transform:translateX(-50%);
-      bottom:14px; z-index:60;
-      width:min(100%, 680px);
-      padding:0 .85rem;
+    .card-box {
+      border: 1px solid var(--rule); border-radius: 18px;
+      background: var(--surface); overflow: hidden;
     }
-    .fab-inner{
-      display:grid; grid-template-columns:repeat(3, 1fr);
-      gap:.65rem;
-      padding:.7rem;
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:color-mix(in srgb, var(--surface-strong) 80%, transparent);
+    .card-inner { padding: clamp(1.25rem, 3vw, 1.75rem) }
+    .card-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 700; letter-spacing: -.02em; line-height: 1.2;
+      color: var(--ink); margin: 0 0 .35rem;
+    }
+    .card-sub { font-size: .8125rem; color: var(--ink-3); margin: 0 0 1.35rem }
+
+    .why-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem }
+    .why-list li { display: flex; gap: .75rem; align-items: flex-start; font-size: .9375rem; color: var(--ink-2) }
+    .why-check {
+      width: 20px; height: 20px; border-radius: 6px; flex: none;
+      background: var(--accent); display: grid; place-items: center; margin-top: .13rem;
+    }
+    .why-check svg { width: 10px; height: 10px; stroke: var(--accent-fg); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round }
+
+    .contact-btns { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 1.25rem }
+    .info-list { display: grid }
+    .info-row {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+      padding: .65rem 0; border-top: 1px solid var(--rule); font-size: .875rem;
+    }
+    .info-row span { color: var(--ink-3) }
+    .info-row strong { font-weight: 600; color: var(--ink); text-align: right; font-variant-numeric: tabular-nums }
+
+    /* ====== FOOTER ====== */
+    footer {
+      padding: 1.75rem 0 clamp(5rem, 10vw, 6.5rem);
+      border-top: 1px solid var(--rule);
+      margin-top: clamp(2rem, 4vw, 4rem);
+    }
+    @media (min-width: 780px) { footer { padding-bottom: 1.75rem } }
+    .footer-row {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-brand { display: flex; align-items: center; gap: .65rem }
+    .footer-mark {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--accent); display: grid; place-items: center; flex: none;
+    }
+    .footer-mark svg { width: 14px; height: 14px }
+    .footer-brand strong { font-size: .875rem; font-weight: 700 }
+    .footer-copy { font-size: .78rem; color: var(--ink-3) }
+
+    /* ====== FAB ====== */
+    .fab-bar {
+      position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);
+      z-index: 60; width: min(100%, 520px); padding: 0 .65rem;
+    }
+    .fab-inner {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem;
+      padding: .55rem;
+      background: color-mix(in oklch, var(--surface) 94%, transparent);
       backdrop-filter: blur(16px);
-      box-shadow:var(--shadow);
+      border: 1px solid var(--rule); border-radius: 18px;
+      box-shadow: var(--shadow-lg);
     }
-    .fab{
-      display:flex; align-items:center; justify-content:center; gap:.45rem;
-      padding:.85rem .7rem;
-      border-radius:16px;
-      font-weight:800;
-      min-height:48px;
-      background:var(--surface);
-      border:1px solid var(--line);
-      color:var(--text);
+    .fab {
+      display: flex; align-items: center; justify-content: center; gap: .4rem;
+      padding: .7rem .5rem; border-radius: 12px;
+      font-weight: 700; font-size: .8125rem; min-height: 46px;
+      background: var(--surface-2); border: 1px solid var(--rule); color: var(--ink);
+      transition: transform 150ms var(--ease-out-quart), background-color 150ms;
     }
-    .fab.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; border-color:transparent}
+    .fab:hover { transform: translateY(-1px) }
+    .fab:active { transform: translateY(0) }
+    .fab-primary { background: var(--accent); color: var(--accent-fg); border-color: transparent }
+    .fab svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none }
+    @media (min-width: 780px) { .fab-bar { display: none } }
 
-    .desktop-only{display:none}
-    .mobile-only{display:flex}
-
-    @media (min-width: 760px){
-      .hero-grid{grid-template-columns:1.05fr .95fr; gap:1.2rem}
-      .services{grid-template-columns:repeat(2, 1fr)}
-      .two-col{grid-template-columns:1fr 1fr}
-      .contact-grid{grid-template-columns:1fr 1fr}
-      .desktop-nav{display:flex}
-      .desktop-only{display:inline-flex}
-      .mobile-only{display:none}
-      .menu-btn{display:none}
-      .stats{grid-template-columns:repeat(4, 1fr)}
-    }
-    @media (min-width: 1024px){
-      .services{grid-template-columns:repeat(3, 1fr)}
-      .hero{padding:3rem 0 1.5rem}
-      .hero-visual{min-height:460px}
-    }
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      *, *:before, *:after{animation:none !important; transition:none !important}
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+  <a class="skip-link" href="#conteudo">Saltar para o conteudo</a>
 
   <header class="topbar">
-    <div class="container nav" aria-label="Navegação principal">
-      <a class="brand" href="#inicio" aria-label="Barros Eletrotécnica">
+    <div class="container nav" aria-label="Navegacao principal">
+      <a class="brand" href="#inicio" aria-label="Barros Eletrotecnica inicio">
         <div class="brand-mark" aria-hidden="true">
-          <img id="logoMark" data-ai="generate" data-slot="logo-dia-noite" data-prompt="Logo minimalista e técnico para empresa de eletrotecnia, linhas finas, geometria moderna, versão dia/noite em roxo, cinza e branco, fundo transparente, aparência premium e corporativa" data-ar="1:1" src="https://cdn.landing-page.io/ai-landingpage/html-generate/83041e99-907e-4db9-8b79-3268277cb2bf/images/logo-dia-noite-c6ff5fb3347246a2992ff695c5b7399e.png" alt="Logo" />
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2 L6.5 13 H11.5 L10 22 L18.5 11 H13.5 Z" fill="white" opacity="0.95"/>
+          </svg>
         </div>
         <div class="brand-text">
-          <strong>Barros Eletrotécnica</strong>
-          <span>Soluções elétricas, técnicas e tecnológicas</span>
+          <strong>Barros Eletrotecnica</strong>
+          <span>Instalacoes eletricas e solucoes tecnologicas</span>
         </div>
       </a>
 
-      <nav class="desktop-nav" aria-label="Secções">
-        <a href="#servicos">Serviços</a>
+      <nav class="desktop-nav" aria-label="Seccoes da pagina">
+        <a href="#servicos">Servicos</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#contactos">Contactos</a>
       </nav>
 
       <div class="nav-actions">
-        <select class="theme-select" id="themeSelect" aria-label="Selecionar tema">
-          <option value="system">Sistema</option>
-          <option value="light">Dia</option>
-          <option value="dark">Noite</option>
-        </select>
-        <button class="menu-btn mobile-only" id="menuBtn" aria-label="Abrir menu" aria-controls="mobileMenu" aria-expanded="false">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <button class="icon-btn" id="themeBtn" aria-label="Mudar para tema escuro">
+          <svg class="t-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="t-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menuBtn"
+          aria-label="Abrir menu de navegacao" aria-controls="mobileMenu" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
         </button>
       </div>
     </div>
   </header>
 
-  <div class="mobile-drawer" id="mobileMenu" aria-hidden="true">
-    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu móvel">
-      <div class="drawer-top">
+  <div class="overlay" id="mobileMenu" aria-hidden="true">
+    <div class="drawer" role="dialog" aria-modal="true" aria-label="Menu de navegacao movel">
+      <div class="drawer-head">
         <strong>Menu</strong>
         <button class="icon-btn" id="closeMenuBtn" aria-label="Fechar menu">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18"/>
+          </svg>
         </button>
       </div>
-      <nav class="drawer-nav" aria-label="Navegação móvel">
-        <a href="#servicos">Serviços</a>
+      <nav class="drawer-links" aria-label="Links de navegacao">
+        <a href="#servicos">Servicos</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#contactos">Contactos</a>
       </nav>
-      <div class="drawer-actions">
-        <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn-secondary" href="mailto:geral@barroseletrotecnica.pt">Email</a>
-        <a class="btn btn-secondary" href="tel:+351939048904">Ligar</a>
+      <div class="drawer-cta">
+        <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 11.5A8.5 8.5 0 1 1 7.2 4.3L4 4l.7 3.1A8.5 8.5 0 0 1 20 11.5Z"/>
+            <path d="M9.2 8.8c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .6.4l.9 2c.1.3.1.5-.1.7l-.4.5c-.1.2-.2.4 0 .7.4.7 1.2 1.6 2.1 2.1.3.2.5.1.7 0l.6-.7c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.7-.1.7-.5 1.3-1.1 1.6-.6.4-1.3.5-2 .4-1.2-.1-2.7-.8-4-2-1.4-1.2-2.3-2.7-2.7-4-.2-.8-.1-1.5.1-2.1Z"/>
+          </svg>
+          Pedir orcamento via WhatsApp
+        </a>
+        <a class="btn btn-outline" href="mailto:geral@barroseletrotecnica.pt">
+          Enviar email
+        </a>
+        <a class="btn btn-outline" href="tel:+351939048904">
+          Ligar agora
+        </a>
       </div>
     </div>
   </div>
 
   <main id="conteudo">
-    <section class="hero" id="inicio">
+    <section class="hero" id="inicio" aria-label="Apresentacao">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Engenharia, precisão e resposta rápida</span>
-          <h1>Soluções técnicas para casa, comércio e indústria.</h1>
-          <p class="lead">
-            Serviços de eletrotecnia e sistemas inteligentes com foco em qualidade, segurança e atendimento direto.
-          </p>
-
+        <div>
+          <span class="eyebrow">Engenharia tecnica certificada</span>
+          <h1>Instalacoes eletricas com <em>precisao</em> e comprometimento.</h1>
+          <p class="lead">Servicos de eletrotecnia, automacao e sistemas inteligentes para casa, comercio e industria&thinsp;&mdash;&thinsp;com foco em qualidade, seguranca e resposta direta.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5A8.5 8.5 0 1 1 7.2 4.3L4 4l.7 3.1A8.5 8.5 0 0 1 20 11.5Z"/><path d="M9.2 8.8c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .6.4l.9 2c.1.3.1.5-.1.7l-.4.5c-.1.2-.2.4 0 .7.4.7 1.2 1.6 2.1 2.1.3.2.5.1.7 0l.6-.7c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.7-.1.7-.5 1.3-1.1 1.6-.6.4-1.3.5-2 .4-1.2-.1-2.7-.8-4-2-1.4-1.2-2.3-2.7-2.7-4-.2-.8-.1-1.5.1-2.1Z"/></svg>
-              WhatsApp
+            <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 11.5A8.5 8.5 0 1 1 7.2 4.3L4 4l.7 3.1A8.5 8.5 0 0 1 20 11.5Z"/>
+                <path d="M9.2 8.8c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .6.4l.9 2c.1.3.1.5-.1.7l-.4.5c-.1.2-.2.4 0 .7.4.7 1.2 1.6 2.1 2.1.3.2.5.1.7 0l.6-.7c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.7-.1.7-.5 1.3-1.1 1.6-.6.4-1.3.5-2 .4-1.2-.1-2.7-.8-4-2-1.4-1.2-2.3-2.7-2.7-4-.2-.8-.1-1.5.1-2.1Z"/>
+              </svg>
+              Pedir orcamento
             </a>
-            <a class="btn btn-secondary" href="mailto:geral@barroseletrotecnica.pt">Email</a>
-            <a class="btn btn-secondary" href="tel:+351939048904">Telefone</a>
+            <a class="btn btn-outline" href="mailto:geral@barroseletrotecnica.pt">
+              geral@barroseletrotecnica.pt
+            </a>
           </div>
-
-          <div class="stats" aria-label="Indicadores rápidos">
-            <div class="stat"><strong>24/7</strong><span>Contacto rápido</span></div>
-            <div class="stat"><strong>Residencial</strong><span>Comercial e industrial</span></div>
-            <div class="stat"><strong>Rápido</strong><span>Resposta e orçamento</span></div>
-            <div class="stat"><strong>Moderno</strong><span>Light e dark mode</span></div>
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <div class="hero-visual">
-            <img class="hero-logo" id="heroLogo" data-ai="generate" data-slot="hero-logo-dia-noite" data-prompt="Marca visual premium e minimalista para uma empresa portuguesa de eletrotecnia, estilo técnico, linhas geométricas finas, composição elegante com roxo escuro, cinza grafite e branco, versão dia/noite, fundo transparente" data-ar="16:9" src="https://cdn.landing-page.io/ai-landingpage/html-generate/83041e99-907e-4db9-8b79-3268277cb2bf/images/hero-logo-dia-noite-5d0f255f2f1e4cb5812c194cb8e586e8.png" alt="Identidade visual da empresa" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="servicos">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Serviços</h2>
-            <p>Uma oferta completa para instalações, segurança, automação e eficiência energética.</p>
-          </div>
-        </div>
-
-        <div class="grid services">
-          <article class="card service"><div class="ico">⚡</div><div><h3>Instalações Elétricas</h3><p>Projetos, montagem e execução com foco em segurança e durabilidade.</p></div></article>
-          <article class="card service"><div class="ico">📡</div><div><h3>Telecomunicações e ITED</h3><p>Infraestruturas preparadas para conectividade estável e organizada.</p></div></article>
-          <article class="card service"><div class="ico">⌂</div><div><h3>Domótica e Automação</h3><p>Controlo inteligente de iluminação, estores, climatização e cenários.</p></div></article>
-          <article class="card service"><div class="ico">◉</div><div><h3>CCTV, Intrusão e Incêndio</h3><p>Soluções de vigilância e proteção para pessoas e património.</p></div></article>
-          <article class="card service"><div class="ico">▣</div><div><h3>Vídeo Porteiro e Acessos</h3><p>Gestão de entradas com conveniência, controlo e segurança.</p></div></article>
-          <article class="card service"><div class="ico">⟐</div><div><h3>Mobilidade Elétrica</h3><p>Pontos de carregamento para uma transição energética eficiente.</p></div></article>
-          <article class="card service"><div class="ico">☀</div><div><h3>Energia Solar</h3><p>Autoconsumo e soluções renováveis para reduzir custos energéticos.</p></div></article>
-          <article class="card service"><div class="ico">🏭</div><div><h3>Instalações Técnicas Industriais</h3><p>Execução técnica robusta para ambientes exigentes e produtivos.</p></div></article>
-          <article class="card service"><div class="ico">🛠</div><div><h3>Manutenção Técnica Especializada</h3><p>Assistência preventiva e corretiva para continuidade operacional.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="diferenciais">
-      <div class="container two-col">
-        <article class="card feature-list">
-          <div class="section-head" style="margin-bottom:.8rem">
-            <div>
-              <h2>Porque escolher a Barros Eletrotécnica</h2>
-              <p>Uma presença técnica, limpa e confiável, com foco em solução rápida.</p>
+          <div class="stats-strip" aria-label="Indicadores chave">
+            <div class="stat-cell">
+              <strong>24&thinsp;/&thinsp;7</strong>
+              <span>Contacto direto</span>
+            </div>
+            <div class="stat-cell">
+              <strong>DGEG</strong>
+              <span>Certificado n.&ordm;&thinsp;85335</span>
+            </div>
+            <div class="stat-cell">
+              <strong>IMPIC</strong>
+              <span>Registo n.&ordm;&thinsp;153625</span>
+            </div>
+            <div class="stat-cell">
+              <strong>3&thinsp;em&thinsp;1</strong>
+              <span>Residencial&thinsp;&middot;&thinsp;Comercial&thinsp;&middot;&thinsp;Industrial</span>
             </div>
           </div>
-          <ul>
-            <li><span class="check">✓</span><span>Atendimento direto por WhatsApp, email e telefone.</span></li>
-            <li><span class="check">✓</span><span>Interface mobile-first com menu acessível e discreto.</span></li>
-            <li><span class="check">✓</span><span>Modo dia/noite automático ou escolhido pelo utilizador.</span></li>
-            <li><span class="check">✓</span><span>Posicionamento técnico e premium, sem excesso visual.</span></li>
-          </ul>
+        </div>
+
+        <aside class="cred-panel" aria-label="Credenciais oficiais">
+          <div class="cred-head">
+            <div class="cred-head-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <div class="cred-head-text">
+              <strong>Credenciais Oficiais</strong>
+              <span>Habilitado e registado em Portugal</span>
+            </div>
+          </div>
+          <div class="cred-row"><span>Responsavel tecnico</span><strong>Rafael Barros</strong></div>
+          <div class="cred-row"><span>Tec. Resp. DGEG</span><strong>N.&ordm;&thinsp;85335</strong></div>
+          <div class="cred-row"><span>IMPIC</span><strong>N.&ordm;&thinsp;153625&thinsp;&ndash;&thinsp;PUB</strong></div>
+          <div class="cred-row"><span>Entidade Instaladora</span><strong>N.&ordm;&thinsp;3319</strong></div>
+          <div class="cred-row"><span>NIF</span><strong>515&thinsp;914&thinsp;509</strong></div>
+          <div class="cred-row"><span>Empresa</span><strong>Brisa Obliqua</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="services-section" id="servicos" aria-label="Servicos oferecidos">
+      <div class="container">
+        <p class="section-label" aria-hidden="true">Servicos</p>
+        <h2 class="section-title">Uma oferta completa de ponta a ponta.</h2>
+        <p class="section-lead">Desde instalacoes residenciais a infraestruturas industriais&thinsp;&mdash;&thinsp;com qualidade, seguranca e comprometimento tecnico.</p>
+        <div class="svc-grid">
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M13 2 4.5 14H11L9 22l10.5-12H14Z"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Instalacoes Eletricas</h3>
+              <p>Projetos, montagem e execucao com foco em seguranca e durabilidade.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Telecomunicacoes e ITED</h3>
+              <p>Infraestruturas preparadas para conectividade estavel e organizada.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Domotica e Automacao</h3>
+              <p>Controlo inteligente de iluminacao, estores, climatizacao e cenarios.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>CCTV, Intrusao e Incendio</h3>
+              <p>Solucoes de vigilancia e protecao para pessoas e patrimonio.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="20" rx="2"/><path d="M9 10h.01M15 10h.01"/><path d="M9 14h6"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Video Porteiro e Acessos</h3>
+              <p>Gestao de entradas com conveniencia, controlo e seguranca.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 8l-2 4h4l-2 4"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Mobilidade Eletrica</h3>
+              <p>Pontos de carregamento para uma transicao energetica eficiente.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Energia Solar</h3>
+              <p>Autoconsumo e solucoes renovaveis para reduzir custos energeticos.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Instalacoes Industriais</h3>
+              <p>Execucao tecnica robusta para ambientes exigentes e produtivos.</p>
+            </div>
+          </article>
+          <article class="svc-item">
+            <div class="svc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div class="svc-body">
+              <h3>Manutencao Especializada</h3>
+              <p>Assistencia preventiva e corretiva para continuidade operacional.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="two-section" id="diferenciais" aria-label="Diferenciais e contactos">
+      <div class="container two-grid">
+        <article class="card-box" aria-label="Por que escolher a Barros Eletrotecnica">
+          <div class="card-inner">
+            <h2 class="card-title">Porque escolher a Barros Eletrotecnica</h2>
+            <p class="card-sub">Tecnica, confianca e resposta direta&thinsp;&mdash;&thinsp;sempre.</p>
+            <ul class="why-list">
+              <li>
+                <span class="why-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>Atendimento direto por WhatsApp, email e telefone, sem intermediarios.</span>
+              </li>
+              <li>
+                <span class="why-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>Certificados DGEG e registados no IMPIC com habilitacoes comprovadas.</span>
+              </li>
+              <li>
+                <span class="why-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>Solucoes personalizadas para residencial, comercial e industrial.</span>
+              </li>
+              <li>
+                <span class="why-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>Oferta completa: instalacoes eletricas, solar, domotica, CCTV e manutencao.</span>
+              </li>
+            </ul>
+          </div>
         </article>
 
-        <article class="card contact" id="contactos">
-          <div class="section-head" style="margin-bottom:.8rem">
-            <div>
-              <h2>Contactos rápidos</h2>
-              <p>Peça orçamento ou tire dúvidas com um clique.</p>
+        <article class="card-box" id="contactos" aria-label="Formas de contacto">
+          <div class="card-inner">
+            <h2 class="card-title">Contactos rapidos</h2>
+            <p class="card-sub">Peca orcamento ou tire duvidas com um clique.</p>
+            <div class="contact-btns">
+              <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 11.5A8.5 8.5 0 1 1 7.2 4.3L4 4l.7 3.1A8.5 8.5 0 0 1 20 11.5Z"/>
+                  <path d="M9.2 8.8c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .6.4l.9 2c.1.3.1.5-.1.7l-.4.5c-.1.2-.2.4 0 .7.4.7 1.2 1.6 2.1 2.1.3.2.5.1.7 0l.6-.7c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.7-.1.7-.5 1.3-1.1 1.6-.6.4-1.3.5-2 .4-1.2-.1-2.7-.8-4-2-1.4-1.2-2.3-2.7-2.7-4-.2-.8-.1-1.5.1-2.1Z"/>
+                </svg>
+                WhatsApp
+              </a>
+              <a class="btn btn-outline" href="mailto:geral@barroseletrotecnica.pt">Email</a>
+              <a class="btn btn-outline" href="tel:+351939048904">Ligar</a>
             </div>
-          </div>
-          <div class="contact-actions">
-            <a class="btn btn-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">WhatsApp</a>
-            <a class="btn btn-secondary" href="mailto:geral@barroseletrotecnica.pt">Email</a>
-            <a class="btn btn-secondary" href="tel:+351939048904">Ligar</a>
-          </div>
-
-          <div class="contact-row" aria-label="Informação institucional">
-            <div class="info-line"><span>Rafael Barros</span><strong>Sócio Gerente</strong></div>
-            <div class="info-line"><span>Téc. Responsável DGEG</span><strong>Nº 85335</strong></div>
-            <div class="info-line"><span>IMPIC</span><strong>Nº 153625 - PUB</strong></div>
-            <div class="info-line"><span>Entidade Instaladora</span><strong>Nº 3319</strong></div>
-            <div class="info-line"><span>NIF</span><strong>515.914.509</strong></div>
-            <div class="info-line"><span>Empresa</span><strong>Brisa Oblíqua</strong></div>
+            <div class="info-list">
+              <div class="info-row"><span>Rafael Barros</span><strong>Socio Gerente</strong></div>
+              <div class="info-row"><span>Tec. Responsavel DGEG</span><strong>N.&ordm;&thinsp;85335</strong></div>
+              <div class="info-row"><span>IMPIC</span><strong>N.&ordm;&thinsp;153625&thinsp;&ndash;&thinsp;PUB</strong></div>
+              <div class="info-row"><span>Entidade Instaladora</span><strong>N.&ordm;&thinsp;3319</strong></div>
+              <div class="info-row"><span>NIF</span><strong>515&thinsp;914&thinsp;509</strong></div>
+            </div>
           </div>
         </article>
       </div>
@@ -559,108 +699,98 @@
   </main>
 
   <footer>
-    <div class="container">
-      <div class="footer-box">
-        <strong>Barros Eletrotécnica</strong>
-        <span>Instalações elétricas e soluções tecnológicas para um presente mais seguro, eficiente e conectado.</span>
+    <div class="container footer-row">
+      <div class="footer-brand">
+        <div class="footer-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M14 2 L6.5 13 H11.5 L10 22 L18.5 11 H13.5 Z" fill="white" opacity="0.95"/>
+          </svg>
+        </div>
+        <strong>Barros Eletrotecnica</strong>
       </div>
+      <p class="footer-copy">&copy; 2025 Barros Eletrotecnica &middot; Instalacoes eletricas e solucoes tecnologicas &middot; Portugal</p>
     </div>
   </footer>
 
-  <div class="fab-bar" aria-label="Ações rápidas">
+  <nav class="fab-bar" aria-label="Acoes rapidas movel">
     <div class="fab-inner">
-      <a class="fab primary" href="https://wa.me/351939048904" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="fab" href="mailto:geral@barroseletrotecnica.pt">Email</a>
-      <a class="fab" href="tel:+351939048904">Telefone</a>
+      <a class="fab fab-primary" href="https://wa.me/351939048904" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 11.5A8.5 8.5 0 1 1 7.2 4.3L4 4l.7 3.1A8.5 8.5 0 0 1 20 11.5Z"/>
+          <path d="M9.2 8.8c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .6.4l.9 2c.1.3.1.5-.1.7l-.4.5c-.1.2-.2.4 0 .7.4.7 1.2 1.6 2.1 2.1.3.2.5.1.7 0l.6-.7c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.7-.1.7-.5 1.3-1.1 1.6-.6.4-1.3.5-2 .4-1.2-.1-2.7-.8-4-2-1.4-1.2-2.3-2.7-2.7-4-.2-.8-.1-1.5.1-2.1Z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <a class="fab" href="mailto:geral@barroseletrotecnica.pt">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect width="20" height="16" x="2" y="4" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        Email
+      </a>
+      <a class="fab" href="tel:+351939048904">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Telefone
+      </a>
     </div>
-  </div>
+  </nav>
 
   <script>
     (function () {
-      const root = document.documentElement;
-      const themeSelect = document.getElementById('themeSelect');
-      const logoMark = document.getElementById('logoMark');
-      const heroLogo = document.getElementById('heroLogo');
-      const menuBtn = document.getElementById('menuBtn');
-      const closeMenuBtn = document.getElementById('closeMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
+      var root    = document.documentElement;
+      var themeBtn = document.getElementById('themeBtn');
+      var menuBtn  = document.getElementById('menuBtn');
+      var closeBtn = document.getElementById('closeMenuBtn');
+      var overlay  = document.getElementById('mobileMenu');
 
-      const logoLight = `data:image/svg+xml;utf8,${encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260">
-          <defs>
-            <linearGradient id="g" x1="0" x2="1">
-              <stop offset="0%" stop-color="#5b3cc4"/>
-              <stop offset="100%" stop-color="#7a5cff"/>
-            </linearGradient>
-          </defs>
-          <rect width="700" height="260" fill="none"/>
-          <g fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M102 168V92l58-34 58 34v76l-58 34z"/>
-            <path d="M116 111h88"/>
-            <path d="M145 127h30l-15 28h25"/>
-          </g>
-          <text x="230" y="127" font-size="52" font-family="Arial, Helvetica, sans-serif" fill="#1c1c25" font-weight="700">Barros</text>
-          <text x="230" y="178" font-size="34" font-family="Arial, Helvetica, sans-serif" fill="#5b3cc4" letter-spacing="2">ELETROTÉCNICA</text>
-        </svg>
-      `)}`;
+      function sysDark() { return window.matchMedia('(prefers-color-scheme: dark)').matches; }
+      var saved   = localStorage.getItem('be-theme');
+      var current = saved || (sysDark() ? 'dark' : 'light');
 
-      const logoDark = `data:image/svg+xml;utf8,${encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260">
-          <defs>
-            <linearGradient id="g" x1="0" x2="1">
-              <stop offset="0%" stop-color="#a78bfa"/>
-              <stop offset="100%" stop-color="#7c5cff"/>
-            </linearGradient>
-          </defs>
-          <rect width="700" height="260" fill="none"/>
-          <g fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M102 168V92l58-34 58 34v76l-58 34z"/>
-            <path d="M116 111h88"/>
-            <path d="M145 127h30l-15 28h25"/>
-          </g>
-          <text x="230" y="127" font-size="52" font-family="Arial, Helvetica, sans-serif" fill="#f4f1ff" font-weight="700">Barros</text>
-          <text x="230" y="178" font-size="34" font-family="Arial, Helvetica, sans-serif" fill="#a78bfa" letter-spacing="2">ELETROTÉCNICA</text>
-        </svg>
-      `)}`;
-
-      function systemTheme() {
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      function applyTheme(t) {
+        current = t;
+        root.setAttribute('data-theme', t);
+        themeBtn.setAttribute('aria-label',
+          t === 'dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro');
+        localStorage.setItem('be-theme', t);
       }
+      applyTheme(current);
 
-      function applyTheme(theme) {
-        const resolved = theme === 'system' ? systemTheme() : theme;
-        root.setAttribute('data-theme', resolved);
-        themeSelect.value = theme;
-        const logo = resolved === 'dark' ? logoDark : logoLight;
-        logoMark.src = logo;
-        heroLogo.src = logo;
-        localStorage.setItem('site-theme', theme);
-      }
-
-      const savedTheme = localStorage.getItem('site-theme') || 'system';
-      applyTheme(savedTheme);
-
-      themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => {
-        if ((localStorage.getItem('site-theme') || 'system') === 'system') applyTheme('system');
+      themeBtn.addEventListener('click', function () {
+        applyTheme(current === 'dark' ? 'light' : 'dark');
       });
 
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mq.addEventListener) {
+        mq.addEventListener('change', function () {
+          if (!localStorage.getItem('be-theme')) applyTheme(sysDark() ? 'dark' : 'light');
+        });
+      }
+
       function openMenu() {
-        mobileMenu.setAttribute('aria-hidden', 'false');
+        overlay.setAttribute('aria-hidden', 'false');
         menuBtn.setAttribute('aria-expanded', 'true');
-        closeMenuBtn.focus();
+        closeBtn.focus();
       }
       function closeMenu() {
-        mobileMenu.setAttribute('aria-hidden', 'true');
+        overlay.setAttribute('aria-hidden', 'true');
         menuBtn.setAttribute('aria-expanded', 'false');
         menuBtn.focus();
       }
 
-      menuBtn?.addEventListener('click', openMenu);
-      closeMenuBtn?.addEventListener('click', closeMenu);
-      mobileMenu?.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') closeMenu(); });
-      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      menuBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeMenu();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.getAttribute('aria-hidden') === 'false') closeMenu();
+      });
+      overlay.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
     })();
   </script>
 </body>
