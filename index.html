@@ -10,32 +10,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --accent:       oklch(67% 0.148 53);
-      --accent-dim:   oklch(80% 0.10  53);
-      --accent-soft:  oklch(94.5% 0.032 58);
+      --accent:       oklch(60% 0.22 290);
+      --accent-dim:   oklch(75% 0.15 290);
+      --accent-soft:  oklch(95% 0.022 290);
       --accent-fg:    oklch(100% 0 0);
-      --bg:           oklch(97% 0.012 72);
-      --surface:      oklch(100% 0.004 72);
-      --surface-2:    oklch(94% 0.018 70);
-      --surface-3:    oklch(89% 0.022 70);
-      --ink:          oklch(17% 0.022 62);
-      --ink-2:        oklch(40% 0.025 62);
-      --ink-3:        oklch(62% 0.018 62);
-      --rule:         oklch(88% 0.02 72);
-      --rule-strong:  oklch(78% 0.025 72);
-      --shadow-sm:    0 1px 3px oklch(20% 0.01 65 / 0.08);
-      --shadow-md:    0 4px 16px oklch(20% 0.01 65 / 0.10);
-      --shadow-lg:    0 14px 48px oklch(20% 0.01 65 / 0.13);
+      --bg:           oklch(97.5% 0.006 285);
+      --surface:      oklch(100% 0.003 285);
+      --surface-2:    oklch(94% 0.012 285);
+      --surface-3:    oklch(89% 0.016 285);
+      --ink:          oklch(17% 0.018 285);
+      --ink-2:        oklch(40% 0.020 285);
+      --ink-3:        oklch(60% 0.014 285);
+      --rule:         oklch(88% 0.012 285);
+      --rule-strong:  oklch(78% 0.018 285);
+      --shadow-sm:    0 1px 3px oklch(20% 0.01 285 / 0.08);
+      --shadow-md:    0 4px 16px oklch(20% 0.01 285 / 0.10);
+      --shadow-lg:    0 14px 48px oklch(20% 0.01 285 / 0.13);
       --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
       --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
       --max: 1200px;
       --g: clamp(1rem, 4vw, 2rem);
     }
     [data-theme="dark"] {
-      --accent:       oklch(74% 0.135 53);
-      --accent-dim:   oklch(60% 0.14  53);
-      --accent-soft:  oklch(22% 0.045 55);
-      --accent-fg:    oklch(10% 0.02  60);
+      --accent:       oklch(71% 0.19 290);
+      --accent-dim:   oklch(55% 0.20 290);
+      --accent-soft:  oklch(22% 0.045 290);
+      --accent-fg:    oklch(100% 0 0);
       --bg:           oklch(13% 0.018 57);
       --surface:      oklch(18% 0.016 57);
       --surface-2:    oklch(23% 0.016 57);
@@ -176,7 +176,7 @@
     .hero::before {
       content: '';
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      background-image: radial-gradient(circle, oklch(67% 0.148 53 / 0.055) 1px, transparent 1px);
+      background-image: radial-gradient(circle, oklch(60% 0.22 290 / 0.055) 1px, transparent 1px);
       background-size: 26px 26px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 100%);
       -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 100%);
@@ -228,8 +228,8 @@
     .btn:active { transform: translateY(0) }
     .btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none }
 
-    .btn-primary { background: var(--accent); color: var(--accent-fg); box-shadow: 0 4px 14px oklch(67% 0.148 53 / 0.30) }
-    .btn-primary:hover { box-shadow: 0 6px 22px oklch(67% 0.148 53 / 0.42) }
+    .btn-primary { background: var(--accent); color: var(--accent-fg); box-shadow: 0 4px 14px oklch(60% 0.22 290 / 0.30) }
+    .btn-primary:hover { box-shadow: 0 6px 22px oklch(60% 0.22 290 / 0.42) }
     .btn-outline { background: transparent; color: var(--ink); border-color: var(--rule-strong) }
     .btn-outline:hover { background: var(--surface-2) }
 
