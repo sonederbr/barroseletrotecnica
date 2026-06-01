@@ -358,13 +358,10 @@
     .footer-row {
       display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
     }
-    .footer-brand { display: flex; align-items: center; gap: .65rem }
-    .footer-mark {
-      width: 30px; height: 30px; border-radius: 8px;
-      background: var(--accent); display: grid; place-items: center; flex: none;
-    }
-    .footer-mark svg { width: 14px; height: 14px }
-    .footer-brand strong { font-size: .875rem; font-weight: 700 }
+    .footer-brand { display: flex; align-items: center; gap: .55rem }
+    .footer-brand svg { width: 16px; height: 16px; color: var(--ink-3); flex: none }
+    .footer-brand a { font-size: .875rem; font-weight: 600; color: var(--ink-2); text-decoration: none; letter-spacing: .01em }
+    .footer-brand a:hover { color: var(--accent) }
     .footer-copy { font-size: .78rem; color: var(--ink-3) }
 
     /* ====== FAB ====== */
@@ -695,12 +692,11 @@
   <footer>
     <div class="container footer-row">
       <div class="footer-brand">
-        <div class="footer-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M14 2 L6.5 13 H11.5 L10 22 L18.5 11 H13.5 Z" fill="white" opacity="0.95"/>
-          </svg>
-        </div>
-        <strong>Barros Eletrotecnica</strong>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <a href="https://www.barroseletrotecnica.pt" target="_blank" rel="noopener">barroseletrotecnica.pt</a>
       </div>
       <p class="footer-copy">&copy; 2025 Barros Eletrotécnica &middot; Instalações elétricas e soluções tecnológicas &middot; Portugal</p>
     </div>
