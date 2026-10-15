@@ -103,14 +103,26 @@ h1 em { color: var(--accent); font-style: normal }
 .drawing-structure { opacity: .68 }
 .drawing-circuits { color: var(--accent); opacity: .8 }
 .drawing-detail { opacity: .45 }
-.energy-pulse { color: var(--accent); transform-box: fill-box; transform-origin: center; animation: energy 3s ease-out 2 }
-.pulse-delayed { animation-delay: 1.5s }
+.building-scene[hidden] { display: none }
+.building-scene { animation: scene-in 300ms var(--ease) }
+.energy-travel { fill: var(--accent); pointer-events: none }
+.energy-dot { opacity: 0 }
+.energy-dot.is-ready { opacity: 1 }
+.motion-btn { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; margin: -.65rem -.5rem -.65rem 0; border: 0; background: transparent; color: var(--ink-2); border-radius: 3px }
+.motion-btn[hidden] { display: none }
+.motion-btn .icon { width: 15px; height: 15px }
+.motion-btn .play-icon { display: none }
+.motion-btn[aria-pressed="true"] .play-icon { display: block }
+.motion-btn[aria-pressed="true"] .pause-icon { display: none }
 .visual-bottomline { margin: 0 var(--visual-padding); padding: .9rem 0; border-top: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; font-size: .68rem }
 .visual-bottomline > span { display: flex; align-items: center; gap: .6rem }
 .visual-bottomline > .icon { width: 16px; height: 16px; color: var(--accent) }
 .visual-sectors { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .67rem }
-.visual-sectors span { text-align: center; padding: .7rem .2rem }
-.visual-sectors span + span { border-left: 1px solid var(--rule) }
+.visual-sectors button { text-align: center; min-height: 44px; padding: .7rem .2rem; border: 0; border-top: 2px solid transparent; background: transparent; color: var(--ink-2); font: inherit; transition: background-color 180ms, color 180ms }
+.visual-sectors button + button { border-left: 1px solid var(--rule) }
+.visual-sectors button[aria-selected="true"] { border-top-color: var(--accent); background: var(--visual-bg); color: var(--accent); font-weight: 600 }
+.visual-sectors button:hover { background: var(--surface-2) }
+.visual-sectors button:focus-visible { outline-offset: -5px }
 .hero-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--rule); margin-top: clamp(2rem, 5vw, 4rem); padding: 1rem 0; color: var(--ink-3); font-size: .7rem }
 .hero-bottom a { display: flex; align-items: center; gap: 1.25rem; color: var(--ink-2) }
 .hero-bottom a span { color: var(--accent); font-size: 1rem }
@@ -132,6 +144,14 @@ h2 > span { color: var(--ink-2) }
 .feature-art > span { position: absolute; width: 100px; height: 100px; border: 1px solid #a9c5bc40; border-radius: 50% }
 .feature-art > span:nth-child(2) { width: 155px; height: 155px }
 .feature-art > span:nth-child(3) { width: 210px; height: 210px }
+.feature-art > span { animation: energy-ring 4.5s cubic-bezier(.2, .5, .4, 1) infinite; animation-play-state: paused }
+.feature-art > span:nth-child(2) { animation-delay: -1.5s }
+.feature-art > span:nth-child(3) { animation-delay: -3s }
+.feature-art > svg { animation: energy-charge 4.5s ease-in-out infinite; animation-play-state: paused }
+.service-feature[data-energy="running"] .feature-art > span,
+.service-feature[data-energy="running"] .feature-art > svg { animation-play-state: running }
+.feature-top .feature-motion-btn { margin: -.65rem -.5rem -.65rem 0; color: #b4ce89 }
+.feature-motion-btn:hover { background: #ffffff0a }
 .service-number { color: var(--ink-3); font-size: .6rem }
 .service-feature .service-number { color: #b4ce89 }
 .service-feature h3 { font-size: 1.5rem; line-height: 1.3; letter-spacing: -.03em; margin-top: .7rem }
@@ -202,7 +222,17 @@ footer { padding-top: 2rem; padding-bottom: calc(6.5rem + env(safe-area-inset-bo
 .reveal { transition: opacity 650ms var(--ease), transform 650ms var(--ease) }
 .reveal.is-pending { opacity: 0; transform: translateY(18px) }
 @keyframes enter { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: translateY(0) } }
-@keyframes energy { 0% { opacity: .65; transform: scale(.5) } 90%, 100% { opacity: 0; transform: scale(2.8) } }
+@keyframes scene-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes energy-ring {
+  0% { transform: scale(.7); opacity: .15 }
+  25% { opacity: .85 }
+  100% { transform: scale(1.3); opacity: .08 }
+}
+@keyframes energy-charge {
+  0%, 100% { transform: scale(1); opacity: .7 }
+  30% { transform: scale(1.045); opacity: 1 }
+  60% { transform: scale(1); opacity: .85 }
+}
 @media (hover: hover) and (pointer: fine) {
   .btn:hover { transform: translateY(-2px) }
   .btn:hover .icon:last-child, .feature-link:hover .icon { transform: translateX(3px) }
@@ -265,5 +295,5 @@ footer { padding-top: 2rem; padding-bottom: calc(6.5rem + env(safe-area-inset-bo
   html { scroll-behavior: auto }
   *, *::before, *::after { animation: none !important; transition: none !important }
   .reveal.is-pending { opacity: 1; transform: none }
-  .energy-pulse { display: none }
+  .energy-travel, .motion-btn { display: none }
 }

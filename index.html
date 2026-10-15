@@ -109,13 +109,16 @@
           <a class="hero-email" href="mailto:casabarros.rafael@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> casabarros.rafael@gmail.com</a>
           <div class="hero-assurance"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span>Certificado DGEG <strong>85335</strong></span><span class="assurance-divider"></span><span>Registo IMPIC <strong>153625</strong></span></div>
         </div>
-        <div class="technical-visual" aria-hidden="true">
+        <div class="technical-visual">
           <div class="visual-topline"><span class="overline">Soluções que se ligam.</span><span class="drawing-index">BE / 01</span></div>
-          <svg class="building-drawing" viewBox="0 0 480 340" fill="none">
+          <div id="sector-panel" role="tabpanel" aria-labelledby="sector-home" tabindex="0">
+          <svg class="building-drawing" viewBox="0 0 480 340" fill="none" role="img" aria-labelledby="drawing-title">
+            <title id="drawing-title">Habitação: energia ligada à iluminação, aos painéis solares e ao carregamento elétrico.</title>
             <defs>
               <pattern id="drawing-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="currentColor" opacity=".13"/></pattern>
             </defs>
             <rect width="480" height="340" fill="url(#drawing-grid)"/>
+            <g class="building-scene" data-sector="home">
             <g class="drawing-structure" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
               <path d="M57 272h367M81 272V142l143-85 147 85v130M66 150l158-96 162 96M224 57v215"/>
               <path d="M112 272v-74h71v74M112 235h71M148 198v74M250 272v-74h48v74M318 198h32v35h-32zM250 150v27h100v-27z"/>
@@ -123,19 +126,59 @@
               <path d="M371 272v-56h25v56M380 228h9M396 228h10l7 12v22a5 5 0 0 1-10 0v-18"/>
             </g>
             <g class="drawing-circuits" stroke="currentColor" stroke-width="2">
-              <path d="M23 305h111l25-25h65v-64M224 216v-23l-28-28M224 216h95l29 29h35M224 216h-76v-18M224 216v66l25 23h204"/>
+              <path class="energy-route" d="M23 305h111l25-25h65v-87l-28-28"/>
+              <path class="energy-route" d="M224 216h95l29 29h35"/>
+              <path class="energy-route" d="M453 305H249l-25-23v-66h-76v-18"/>
               <circle cx="224" cy="216" r="8" fill="var(--visual-bg)"/><circle cx="224" cy="216" r="3" fill="currentColor" stroke="none"/>
               <circle cx="23" cy="305" r="3" fill="currentColor"/><circle cx="453" cy="305" r="3" fill="currentColor"/>
             </g>
-            <circle class="energy-pulse" cx="224" cy="216" r="18" stroke="currentColor" stroke-width="1.5"/>
-            <circle class="energy-pulse pulse-delayed" cx="224" cy="216" r="18" stroke="currentColor" stroke-width="1.5"/>
+            <g class="energy-travel" aria-hidden="true"><circle class="energy-dot" r="3"/><circle class="energy-dot" r="3"/><circle class="energy-dot" r="3"/></g>
+            </g>
+            <g class="building-scene" data-sector="shop" hidden>
+              <g class="drawing-structure" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                <path d="M57 272h367M84 272V104h310v168M76 104V86h326v18zM84 148h310"/>
+                <path d="M84 112h310l12 36H72zM119 112l-7 36M153 112l-4 36M188 112l-1 36M222 112l2 36M257 112l5 36M291 112l8 36M326 112l11 36M360 112l14 36"/>
+                <path d="M103 272V167h112v105M103 235h112M159 167v68M235 272V167h54v105M279 215v11M310 167h65v68h-65zM310 235l65-68M122 185l-8 8M131 185l-17 17"/>
+                <path d="M188 67h102v19H188zM204 76h69M104 154v7h14v-7M355 154v7h14v-7M350 99h16l5 8h-21z"/>
+                <path d="M316 253h52M326 253v19M358 253v19"/>
+              </g>
+              <g class="drawing-circuits" stroke="currentColor" stroke-width="2">
+                <path class="energy-route" d="M23 305h111l25-25h78V157H111"/>
+                <path class="energy-route" d="M237 216h105v-59h20v-54"/>
+                <path class="energy-route" d="M453 305H271l-34-25v-64h25v-18"/>
+                <circle cx="237" cy="216" r="8" fill="var(--visual-bg)"/><circle cx="237" cy="216" r="3" fill="currentColor" stroke="none"/>
+                <circle cx="23" cy="305" r="3" fill="currentColor"/><circle cx="453" cy="305" r="3" fill="currentColor"/>
+              </g>
+              <g class="energy-travel" aria-hidden="true"><circle class="energy-dot" r="3"/><circle class="energy-dot" r="3"/><circle class="energy-dot" r="3"/></g>
+            </g>
+            <g class="building-scene" data-sector="factory" hidden>
+              <g class="drawing-structure" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                <path d="M57 272h367M81 272V141l75-40v40l75-40v40l75-40v171M306 159h88v113M329 159V61h24v98M325 61h32M373 159V83h17v76"/>
+                <path d="M100 157h37v21h-37zM175 157h37v21h-37zM250 157h37v21h-37zM115 157v21M190 157v21M265 157v21"/>
+                <path d="M104 272v-62h41v62M113 221h23M113 232h23M154 249h131v23H154zM154 261h131M169 261v11M270 261v11"/>
+                <circle cx="175" cy="260" r="4"/><circle cx="196" cy="260" r="4"/><circle cx="217" cy="260" r="4"/><circle cx="238" cy="260" r="4"/><circle cx="259" cy="260" r="4"/>
+                <path d="M194 249v-24l25-20 23 8 15-26M215 249v-15l12-10 16 6 24-35M257 187l10 8M319 210h60v62h-60zM326 218h46M326 227h46M326 236h46"/>
+              </g>
+              <g class="drawing-circuits" stroke="currentColor" stroke-width="2">
+                <path class="energy-route" d="M23 305h81l21-25v-42h112"/>
+                <path class="energy-route" d="M237 238v-45h30v-25"/>
+                <path class="energy-route" d="M453 305h-82l-22-25v-42H237"/>
+                <circle cx="237" cy="238" r="8" fill="var(--visual-bg)"/><circle cx="237" cy="238" r="3" fill="currentColor" stroke="none"/>
+                <circle cx="23" cy="305" r="3" fill="currentColor"/><circle cx="453" cy="305" r="3" fill="currentColor"/>
+              </g>
+              <g class="energy-travel" aria-hidden="true"><circle class="energy-dot" r="3"/><circle class="energy-dot" r="3"/><circle class="energy-dot" r="3"/></g>
+            </g>
             <g class="drawing-detail" stroke="currentColor" stroke-width="1.3">
               <path d="M62 61h35M62 61v35M418 61h-35M418 61v35M62 317h35M418 317h-35"/>
-              <path d="M322 72a22 22 0 0 1 30 0M327 78a15 15 0 0 1 20 0M333 84a7 7 0 0 1 8 0"/>
             </g>
           </svg>
-          <div class="visual-bottomline"><span><span class="status-dot"></span> Segurança em cada ligação</span><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></div>
-          <div class="visual-sectors"><span>Habitação</span><span>Comércio</span><span>Indústria</span></div>
+          </div>
+          <div class="visual-bottomline"><span><span class="status-dot"></span> Segurança em cada ligação</span><button class="motion-btn" id="motionBtn" type="button" aria-label="Pausar animação" aria-pressed="false" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="pause-icon" d="M9 5v14M15 5v14"/><path class="play-icon" d="m9 5 10 7-10 7z"/></svg></button></div>
+          <div class="visual-sectors" role="tablist" aria-label="Setor de atividade">
+            <button id="sector-home" type="button" role="tab" aria-controls="sector-panel" aria-selected="true" data-sector="home">Habitação</button>
+            <button id="sector-shop" type="button" role="tab" aria-controls="sector-panel" aria-selected="false" tabindex="-1" data-sector="shop">Comércio</button>
+            <button id="sector-factory" type="button" role="tab" aria-controls="sector-panel" aria-selected="false" tabindex="-1" data-sector="factory">Indústria</button>
+          </div>
         </div>
       </div>
       <div class="container hero-bottom"><span>Instalações. Diagnóstico. Manutenção.</span><a href="#servicos">Explore as nossas soluções <span aria-hidden="true">↓</span></a></div>
@@ -149,7 +192,7 @@
         </div>
         <div class="service-layout">
           <article class="service-feature reveal">
-            <div class="feature-top"><span class="overline">A base de tudo</span><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></div>
+            <div class="feature-top"><span class="overline">A base de tudo</span><button class="motion-btn feature-motion-btn" id="featureMotionBtn" type="button" aria-label="Pausar efeito de energia" aria-pressed="false" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="pause-icon" d="M9 5v14M15 5v14"/><path class="play-icon" d="m9 5 10 7-10 7z"/></svg></button></div>
             <div class="feature-art" aria-hidden="true"><span></span><span></span><span></span><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></div>
             <div><span class="service-number">01</span><h3>Instalações Elétricas</h3><p>Projetos, montagem e execução com foco em segurança e durabilidade.</p><a class="feature-link" href="https://wa.me/351939048904" target="_blank" rel="noopener noreferrer">Falar sobre o meu projeto <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
           </article>
