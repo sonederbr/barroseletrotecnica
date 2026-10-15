@@ -1,0 +1,23 @@
+{
+  "name": "Barros Eletrotécnica",
+  "short_name": "Barros",
+  "lang": "pt-PT",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#f5f6f2",
+  "theme_color": "#014f59",
+  "icons": [
+    {
+      "src": "logos/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logos/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
